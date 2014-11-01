@@ -1,0 +1,1408 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     41740,       1398]
+NotebookOptionsPosition[     34116,       1150]
+NotebookOutlinePosition[     36916,       1216]
+CellTagsIndexPosition[     36873,       1213]
+WindowTitle->Numerical Analysis Package - Wolfram Mathematica
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[GridBox[{
+   {Cell["NUMERICAL ANALYSIS TUTORIAL", "PacletNameCell"], Cell[TextData[{
+     Cell[BoxData[
+      ActionMenuBox[
+       FrameBox["\<\"Functions \[RightGuillemet]\"\>",
+        StripOnInput->False], {"\<\"NIntegrate\"\>":>Documentation`HelpLookup[
+       "paclet:ref/NIntegrate"], "\<\"NumD\"\>":>Documentation`HelpLookup[
+       "paclet:NumericalAnalysis/ref/NumD"], "\<\"NumLimit\"\>":>
+       Documentation`HelpLookup[
+       "paclet:NumericalAnalysis/ref/NumLimit"], "\<\"NumResidue\"\>":>
+       Documentation`HelpLookup[
+       "paclet:NumericalAnalysis/ref/NumResidue"], "\<\"NumSeries\"\>":>
+       Documentation`HelpLookup[
+       "paclet:NumericalAnalysis/ref/NumSeries"], "\<\"PrecisionGoal\"\>":>
+       Documentation`HelpLookup[
+       "paclet:ref/PrecisionGoal"], "\<\"WorkingPrecision\"\>":>
+       Documentation`HelpLookup["paclet:ref/WorkingPrecision"]},
+       Appearance->None,
+       MenuAppearance->Automatic]],
+      LineSpacing->{1.4, 0}],
+     "\[ThickSpace]\[ThickSpace]\[ThickSpace]\[ThickSpace]\[ThickSpace]\
+\[ThickSpace]",
+     Cell[BoxData[
+      ActionMenuBox[
+       FrameBox["\<\"URL \[RightGuillemet]\"\>",
+        StripOnInput->
+         False], {"\<\"NumericalAnalysis/tutorial/NumericalAnalysis\"\>":>
+       None, "\<\"Copy Mathematica url\"\>":>
+       Module[{DocumentationSearch`Private`nb$}, 
+        DocumentationSearch`Private`nb$ = NotebookPut[
+           Notebook[{
+             Cell["NumericalAnalysis/tutorial/NumericalAnalysis"]}, Visible -> 
+            False]]; SelectionMove[
+         DocumentationSearch`Private`nb$, All, Notebook]; 
+        FrontEndTokenExecute[DocumentationSearch`Private`nb$, "Copy"]; 
+        NotebookClose[DocumentationSearch`Private`nb$]; Null], 
+       Delimiter, "\<\"Copy web url\"\>":>
+       Module[{DocumentationSearch`Private`nb$}, 
+        DocumentationSearch`Private`nb$ = NotebookPut[
+           Notebook[{
+             Cell[
+              BoxData[
+               MakeBoxes[
+                Hyperlink[
+                "http://reference.wolfram.com/mathematica/NumericalAnalysis/\
+tutorial/NumericalAnalysis.html"], StandardForm]], "Input", TextClipboardType -> 
+              "PlainText"]}, Visible -> False]]; 
+        SelectionMove[DocumentationSearch`Private`nb$, All, Notebook]; 
+        FrontEndTokenExecute[DocumentationSearch`Private`nb$, "Copy"]; 
+        NotebookClose[DocumentationSearch`Private`nb$]; 
+        Null], "\<\"Go to web url\"\>":>FrontEndExecute[{
+         NotebookLocate[{
+           URL[
+            StringJoin[
+            "http://reference.wolfram.com/mathematica/", 
+             "NumericalAnalysis/tutorial/NumericalAnalysis", ".html"]], 
+           None}]}]},
+       Appearance->None,
+       MenuAppearance->Automatic]],
+      LineSpacing->{1.4, 0}]
+    }], "AnchorBar"]}
+  }]], "AnchorBarGrid",
+ GridBoxOptions->{GridBoxItemSize->{"Columns" -> {
+     Scaled[0.65], {
+      Scaled[0.34]}}, "ColumnsIndexed" -> {}, "Rows" -> {{1.}}, 
+   "RowsIndexed" -> {}}},
+ CellID->1],
+
+Cell[CellGroupData[{
+
+Cell["Numerical Analysis Package", "Title",
+ CellID->509267359],
+
+Cell[TextData[{
+ "The functions defined in the ",
+ Cell[BoxData["NumericalAnalysis`"], "InlineFormula"],
+ " context provide support for finding numerical solutions to \
+calculus-related problems."
+}], "Text",
+ CellID->1534169418],
+
+Cell["This loads the package:", "MathCaption",
+ CellID->1825449234],
+
+Cell[BoxData[
+ RowBox[{"<<", "NumericalAnalysis`"}]], "Input",
+ CellLabel->"In[1]:=",
+ CellID->1373894796],
+
+Cell[CellGroupData[{
+
+Cell["Numerical Calculation of Limits", "Section",
+ CellID->2591],
+
+Cell[TextData[{
+ "The built\[Hyphen]in function ",
+ Cell[BoxData[
+  ButtonBox["Limit",
+   BaseStyle->"Link",
+   ButtonData->"paclet:ref/Limit"]], "InlineFormula"],
+ " computes limits using symbolic and analytic methods. The function ",
+ Cell[BoxData[
+  ButtonBox["NumLimit",
+   BaseStyle->"Link",
+   ButtonData->"paclet:NumericalAnalysis/ref/NumLimit"]], "InlineFormula"],
+ " contained in the ",
+ Cell[BoxData[
+  ButtonBox["NumericalAnalysis",
+   BaseStyle->"Link",
+   ButtonData->"paclet:NumericalAnalysis/guide/NumericalCalculusPackage"]], 
+  "InlineFormula"],
+ " package works by numerically evaluating a short sequence of function \
+values as the argument approaches the specified point. The result of this \
+calculation is passed to a routine that uses either Wynn\[CloseCurlyQuote]s ",
+ Cell[BoxData[
+  FormBox["\[Epsilon]", TraditionalForm]], "InlineFormula"],
+ "\[Hyphen]algorithm or a generalized Euler transformation to find an \
+approximation to the limit. "
+}], "Text",
+ CellID->16706],
+
+Cell[BoxData[GridBox[{
+   {
+    RowBox[{
+     ButtonBox["NumLimit",
+      BaseStyle->"Link",
+      ButtonData->"paclet:NumericalAnalysis/ref/NumLimit"], "[", 
+     StyleBox["expr", "TI"], ",", 
+     StyleBox["x", "TI"], "->", 
+     SubscriptBox[
+      StyleBox["x", "TI"], "0"], "]"}], Cell[TextData[{
+     "numerically find the limit as ",
+     Cell[BoxData[
+      StyleBox["x", "TI"]], "InlineFormula"],
+     " approaches ",
+     Cell[BoxData[
+      SubscriptBox[
+       StyleBox["x", "TI"], "0"]], "InlineFormula"]
+    }], "TableText"]}
+  }]], "DefinitionBox",
+ GridBoxOptions->{
+ GridBoxDividers->{
+  "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
+   "RowsIndexed" -> {}}},
+ CellID->19362],
+
+Cell["Computing numerical limits. ", "Caption",
+ CellID->19031],
+
+Cell["Here is the numerical computation of a limit. ", "MathCaption",
+ CellID->6421],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"NumLimit", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"Zeta", "[", "s", "]"}], "-", 
+    FractionBox["1", 
+     RowBox[{"s", "-", "1"}]]}], ",", 
+   RowBox[{"s", "\[Rule]", "1"}]}], "]"}]], "Input",
+ CellLabel->"In[2]:=",
+ CellID->27111],
+
+Cell[BoxData["0.577215659712782`"], "Output",
+ ImageSize->{60, 15},
+ ImageMargins->{{0, 0}, {0, 0}},
+ ImageRegion->{{0, 1}, {0, 1}},
+ CellLabel->"Out[2]=",
+ CellID->81101645]
+}, Open  ]],
+
+Cell["The limit gives the number known as Euler\[CloseCurlyQuote]s gamma. ", \
+"MathCaption",
+ CellID->7348],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"N", "[", "EulerGamma", "]"}]], "Input",
+ CellLabel->"In[3]:=",
+ CellID->3464],
+
+Cell[BoxData["0.5772156649015329`"], "Output",
+ ImageSize->{60, 15},
+ ImageMargins->{{0, 0}, {0, 0}},
+ ImageRegion->{{0, 1}, {0, 1}},
+ CellLabel->"Out[3]=",
+ CellID->184857534]
+}, Open  ]],
+
+Cell[TextData[{
+ "You can also compute limits as ",
+ Cell[BoxData[
+  FormBox[
+   StyleBox["x", "TI"], TraditionalForm]], "InlineFormula"],
+ " approaches infinity. "
+}], "MathCaption",
+ CellID->25569],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"NumLimit", "[", 
+  RowBox[{
+   FractionBox[
+    RowBox[{
+     RowBox[{"2", " ", 
+      SuperscriptBox["x", "3"]}], "+", 
+     RowBox[{"Sin", "[", "x", "]"}]}], 
+    RowBox[{
+     RowBox[{"5", " ", 
+      SuperscriptBox["x", "3"]}], "+", 
+     RowBox[{"Log", "[", "x", "]"}]}]], ",", 
+   RowBox[{"x", "\[Rule]", "\[Infinity]"}]}], "]"}]], "Input",
+ CellLabel->"In[4]:=",
+ CellID->2989],
+
+Cell[BoxData["0.3999999999999999`"], "Output",
+ ImageSize->{25, 15},
+ ImageMargins->{{0, 0}, {0, 0}},
+ ImageRegion->{{0, 1}, {0, 1}},
+ CellLabel->"Out[4]=",
+ CellID->37473145]
+}, Open  ]],
+
+Cell[BoxData[GridBox[{
+   {Cell["option name", "TableHeader"], Cell["default value", "TableHeader"], 
+    " "},
+   {
+    ButtonBox["WorkingPrecision",
+     BaseStyle->"Link",
+     ButtonData->"paclet:ref/WorkingPrecision"], 
+    ButtonBox["MachinePrecision",
+     BaseStyle->"Link",
+     ButtonData->"paclet:ref/MachinePrecision"], Cell[
+    "number of digits of precision to be used ", "TableText"]},
+   {
+    ButtonBox["Method",
+     BaseStyle->"Link",
+     ButtonData->"paclet:ref/Method"], "NumEulerSum", Cell[TextData[{
+     "method of evaluation, either ",
+     StyleBox[ButtonBox["EulerSum",
+      BaseStyle->"Link",
+      ButtonData->"paclet:NumericalAnalysis/ref/EulerSum"], "InlineCode"],
+     " or SequenceLimit "
+    }], "TableText"]},
+   {"WynnDegree", "1", Cell["degree to use in the Wynn method", "TableText"]}
+  }]], "DefinitionBox3Col",
+ GridBoxOptions->{
+ GridBoxDividers->{
+  "Columns" -> {{False}}, "ColumnsIndexed" -> {}, 
+   "Rows" -> {False, True, {False}, False}, "RowsIndexed" -> {}}},
+ CellID->2017],
+
+Cell[TextData[{
+ "Options for ",
+ Cell[BoxData[
+  ButtonBox["NumLimit",
+   BaseStyle->"Link",
+   ButtonData->"paclet:NumericalAnalysis/ref/NumLimit"]], "InlineFormula"],
+ "."
+}], "Caption",
+ CellID->21763],
+
+Cell["\<\
+There are many specialized techniques for accelerating the convergence of a \
+series. Faster convergence means that in a numerical evaluation fewer terms \
+are needed to give a result of the desired accuracy.\
+\>", "Text",
+ CellID->17753],
+
+Cell[TextData[{
+ "There are occasionally instances in which it is difficult or impossible to \
+analytically compute the derivative of a function. In these cases you can \
+compute the derivative using the function ",
+ Cell[BoxData[
+  ButtonBox["ND",
+   BaseStyle->"Link",
+   ButtonData->"paclet:NumericalAnalysis/ref/ND"]], "InlineFormula"],
+ " instead of the built\[Hyphen]in function ",
+ Cell[BoxData[
+  ButtonBox["D",
+   BaseStyle->"Link",
+   ButtonData->"paclet:ref/D"]], "InlineFormula"],
+ ". "
+}], "Text",
+ CellID->26307],
+
+Cell[BoxData[GridBox[{
+   {
+    RowBox[{
+     ButtonBox["NumD",
+      BaseStyle->"Link",
+      ButtonData->"paclet:NumericalAnalysis/ref/NumD"], "[", 
+     StyleBox["f", "TI"], ",", 
+     StyleBox["x", "TI"], ",", 
+     SubscriptBox[
+      StyleBox["x", "TI"], "0"], "]"}], Cell[TextData[{
+     "give a numerical approximation to ",
+     Cell[BoxData[
+      FractionBox[
+       RowBox[{"\[PartialD]", 
+        StyleBox["f", "TI"]}], 
+       RowBox[{"\[PartialD]", 
+        StyleBox["x", "TI"]}]]], "InlineFormula"],
+     " evaluated at the point\[NonBreakingSpace]",
+     Cell[BoxData[
+      SubscriptBox[
+       StyleBox["x", "TI"], "0"]], "InlineFormula"]
+    }], "TableText"]},
+   {
+    RowBox[{
+     ButtonBox["NumD",
+      BaseStyle->"Link",
+      ButtonData->"paclet:NumericalAnalysis/ref/NumD"], "[", 
+     StyleBox["f", "TI"], ",", "{", 
+     StyleBox["x", "TI"], ",", 
+     StyleBox["n", "TI"], "}", ",", 
+     SubscriptBox[
+      StyleBox["x", "TI"], "0"], "]"}], Cell[TextData[{
+     "give the ",
+     Cell[BoxData[
+      SuperscriptBox[
+       StyleBox["n", "TI"], "th"]], "InlineFormula"],
+     " derivative"
+    }], "TableText"]}
+  }]], "DefinitionBox",
+ GridBoxOptions->{
+ GridBoxDividers->{
+  "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
+   "RowsIndexed" -> {}}},
+ CellID->6442],
+
+Cell["Numerical computation of derivatives. ", "Caption",
+ CellID->27758],
+
+Cell[TextData[{
+ "Here is a numerical approximation of the derivative of ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox[
+    StyleBox["e", "TI"], 
+    RowBox[{"sin", 
+     RowBox[{"(", 
+      StyleBox["x", "TI"], ")"}]}]], TraditionalForm]], "InlineFormula"],
+ " at ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    StyleBox["x", "TI"], "=", "2"}], TraditionalForm]], "InlineFormula"],
+ ". "
+}], "MathCaption",
+ CellID->6249],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"NumD", "[", 
+  RowBox[{
+   SuperscriptBox["\[ExponentialE]", 
+    RowBox[{"Sin", "[", "x", "]"}]], ",", "x", ",", "2"}], "]"}]], "Input",
+ CellLabel->"In[5]:=",
+ CellID->13196],
+
+Cell[BoxData[
+ RowBox[{"-", "1.0331168751058337`"}]], "Output",
+ ImageSize->{61, 15},
+ ImageMargins->{{0, 0}, {0, 0}},
+ ImageRegion->{{0, 1}, {0, 1}},
+ CellLabel->"Out[5]=",
+ CellID->869050492]
+}, Open  ]],
+
+Cell[TextData[{
+ "After increasing the setting of the option ",
+ Cell[BoxData[
+  ButtonBox["Terms",
+   BaseStyle->"Link",
+   ButtonData->"paclet:NumericalAnalysis/ref/Terms"]], "InlineFormula"],
+ ", the difference between the symbolically computed result and the numerical \
+result for a third derivative is quite small. "
+}], "MathCaption",
+ CellID->29449],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"NumD", "[", 
+   RowBox[{
+    SuperscriptBox["\[ExponentialE]", 
+     RowBox[{"Sin", "[", "x", "]"}]], ",", 
+    RowBox[{"{", 
+     RowBox[{"x", ",", "3"}], "}"}], ",", "2", ",", 
+    RowBox[{"Terms", "\[Rule]", "10"}]}], "]"}], "-", 
+  RowBox[{"N", "[", 
+   RowBox[{
+    RowBox[{
+     SubscriptBox["\[PartialD]", 
+      RowBox[{"{", 
+       RowBox[{"x", ",", "3"}], "}"}]], 
+     SuperscriptBox["\[ExponentialE]", 
+      RowBox[{"Sin", "[", "x", "]"}]]}], "/.", "\[InvisibleSpace]", 
+    RowBox[{"x", "\[Rule]", "2"}]}], "]"}]}]], "Input",
+ CellLabel->"In[6]:=",
+ CellID->23083],
+
+Cell[BoxData["0.0000310325395620481`"], "Output",
+ ImageSize->{88, 15},
+ ImageMargins->{{0, 0}, {0, 0}},
+ ImageRegion->{{0, 1}, {0, 1}},
+ CellLabel->"Out[6]=",
+ CellID->860766771]
+}, Open  ]],
+
+Cell["\<\
+This is the error in the numerical derivative using Cauchy\[CloseCurlyQuote]s \
+integral formula. \
+\>", "MathCaption",
+ CellID->15204],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"NumD", "[", 
+   RowBox[{
+    SuperscriptBox["\[ExponentialE]", 
+     RowBox[{"Sin", "[", "x", "]"}]], ",", 
+    RowBox[{"{", 
+     RowBox[{"x", ",", "3"}], "}"}], ",", "2", ",", 
+    RowBox[{"Method", "\[Rule]", "NIntegrate"}]}], "]"}], "-", 
+  RowBox[{"N", "[", 
+   RowBox[{
+    RowBox[{
+     SubscriptBox["\[PartialD]", 
+      RowBox[{"{", 
+       RowBox[{"x", ",", "3"}], "}"}]], 
+     SuperscriptBox["\[ExponentialE]", 
+      RowBox[{"Sin", "[", "x", "]"}]]}], "/.", "\[InvisibleSpace]", 
+    RowBox[{"x", "\[Rule]", "2"}]}], "]"}]}]], "Input",
+ CellLabel->"In[7]:=",
+ CellID->31242],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"-", "1.3500311979441904`*^-13"}], "+", 
+  RowBox[{"1.790234627208065`*^-15", " ", "\[ImaginaryI]"}]}]], "Output",
+ ImageSize->{215, 15},
+ ImageMargins->{{0, 0}, {0, 0}},
+ ImageRegion->{{0, 1}, {0, 1}},
+ CellLabel->"Out[7]=",
+ CellID->195240984]
+}, Open  ]],
+
+Cell[BoxData[GridBox[{
+   {Cell["option name", "TableHeader"], Cell["default value", "TableHeader"], 
+    " "},
+   {
+    ButtonBox["WorkingPrecision",
+     BaseStyle->"Link",
+     ButtonData->"paclet:ref/WorkingPrecision"], 
+    ButtonBox["MachinePrecision",
+     BaseStyle->"Link",
+     ButtonData->"paclet:ref/MachinePrecision"], Cell[
+    "number of digits of precision to be used", "TableText"]},
+   {
+    ButtonBox["Method",
+     BaseStyle->"Link",
+     ButtonData->"paclet:ref/Method"], "NumEulerSum", Cell[TextData[{
+     "method of evaluation, either ",
+     StyleBox["NumEulerSum", "InlineCode"],
+     " (numerical limit of difference quotients) or ",
+     StyleBox[ButtonBox["NIntegrate",
+      BaseStyle->"Link",
+      ButtonData->"paclet:ref/NIntegrate"], "InlineCode"],
+     " (Cauchy\[CloseCurlyQuote]s integral formula) "
+    }], "TableText"]}
+  }]], "DefinitionBox3Col",
+ GridBoxOptions->{
+ GridBoxDividers->{
+  "Columns" -> {{False}}, "ColumnsIndexed" -> {}, 
+   "Rows" -> {False, True, {False}, False}, "RowsIndexed" -> {}}},
+ CellID->5317],
+
+Cell[TextData[{
+ "Options for ",
+ Cell[BoxData[
+  ButtonBox["NumD",
+   BaseStyle->"Link",
+   ButtonData->"paclet:NumericalAnalysis/ref/NumD"]], "InlineFormula"],
+ "."
+}], "Caption",
+ CellID->32656],
+
+Cell[TextData[{
+ "You should realize that with sufficiently pathological examples, the \
+algorithms used for ",
+ Cell[BoxData[
+  ButtonBox["NumLimit",
+   BaseStyle->"Link",
+   ButtonData->"paclet:NumericalAnalysis/ref/NumLimit"]], "InlineFormula"],
+ ", or ",
+ Cell[BoxData[
+  ButtonBox["NumD",
+   BaseStyle->"Link",
+   ButtonData->"paclet:NumericalAnalysis/ref/NumD"]], "InlineFormula"],
+ " can give wrong answers. In most cases, you can test your answer by looking \
+at the sensitivity to changes in the setting of options. "
+}], "Text",
+ CellID->11452]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Numerical Calculation of Residues", "Section",
+ CellID->30767],
+
+Cell[TextData[{
+ "The ",
+ StyleBox["Mathematica",
+  FontSlant->"Italic"],
+ " function ",
+ Cell[BoxData[
+  ButtonBox["Residue",
+   BaseStyle->"Link",
+   ButtonData->"paclet:ref/Residue"]], "InlineFormula"],
+ " symbolically finds the residue of an expression at a point in the complex \
+plane. Because it is symbolic in nature it is sometimes unable to get a \
+result. "
+}], "Text",
+ CellID->3951],
+
+Cell[TextData[{
+ Cell[BoxData[
+  ButtonBox["NumResidue",
+   BaseStyle->"Link",
+   ButtonData->"paclet:NumericalAnalysis/ref/NumResidue"]], "InlineFormula"],
+ " is the numerical version of ",
+ Cell[BoxData[
+  ButtonBox["NumResidue",
+   BaseStyle->"Link",
+   ButtonData->"paclet:NumericalAnalysis/ref/NumResidue"]], "InlineFormula"],
+ ". It works by numerically integrating around a small circle centered at the \
+point at which the residue is being sought. The obvious problem with this \
+approach is that it in fact finds the sum of the residues at all of the \
+points contained within the circle. By making the radius of the circle \
+sufficiently small you can exclude all singularities but the one in question. "
+}], "Text",
+ CellID->16117],
+
+Cell[BoxData[GridBox[{
+   {
+    RowBox[{
+     ButtonBox["NumResidue",
+      BaseStyle->"Link",
+      ButtonData->"paclet:NumericalAnalysis/ref/NumResidue"], "[", 
+     StyleBox["expr", "TI"], ",", "{", 
+     StyleBox["x", "TI"], ",", 
+     SubscriptBox[
+      StyleBox["x", "TI"], "0"], "}", "]"}], Cell[TextData[{
+     "numerically find the residue of ",
+     Cell[BoxData[
+      StyleBox["expr", "TI"]], "InlineFormula"],
+     " at the point ",
+     Cell[BoxData[
+      RowBox[{
+       StyleBox["x", "TI"], "="}]], "InlineFormula"],
+     " ",
+     Cell[BoxData[
+      SubscriptBox[
+       StyleBox["x", "TI"], "0"]], "InlineFormula"],
+     " "
+    }], "TableText"]}
+  }]], "DefinitionBox",
+ GridBoxOptions->{
+ GridBoxDividers->{
+  "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
+   "RowsIndexed" -> {}}},
+ CellID->8707],
+
+Cell["Numerical evaluation of residues. ", "Caption",
+ CellID->28587],
+
+Cell[BoxData[GridBox[{
+   {
+    ButtonBox["PrecisionGoal",
+     BaseStyle->"Link",
+     ButtonData->"paclet:ref/PrecisionGoal"], Cell[TextData[{
+     "the ",
+     StyleBox[ButtonBox["PrecisionGoal",
+      BaseStyle->"Link",
+      ButtonData->"paclet:ref/PrecisionGoal"], "InlineCode"],
+     " to be used by ",
+     StyleBox[ButtonBox["NIntegrate",
+      BaseStyle->"Link",
+      ButtonData->"paclet:ref/NIntegrate"], "InlineCode"],
+     " "
+    }], "TableText"]},
+   {
+    ButtonBox["WorkingPrecision",
+     BaseStyle->"Link",
+     ButtonData->"paclet:ref/WorkingPrecision"], Cell[TextData[{
+     "the ",
+     StyleBox[ButtonBox["WorkingPrecision",
+      BaseStyle->"Link",
+      ButtonData->"paclet:ref/WorkingPrecision"], "InlineCode"],
+     " to be used by ",
+     StyleBox[ButtonBox["NIntegrate",
+      BaseStyle->"Link",
+      ButtonData->"paclet:ref/NIntegrate"], "InlineCode"],
+     " "
+    }], "TableText"]}
+  }]], "DefinitionBox",
+ GridBoxOptions->{
+ GridBoxDividers->{
+  "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
+   "RowsIndexed" -> {}}},
+ CellID->32556],
+
+Cell[TextData[{
+ "Options for ",
+ Cell[BoxData[
+  ButtonBox["NumResidue",
+   BaseStyle->"Link",
+   ButtonData->"paclet:NumericalAnalysis/ref/NumResidue"]], "InlineFormula"],
+ ". "
+}], "Caption",
+ CellID->4207],
+
+Cell[TextData[{
+ "Find the residue of ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"1", "/", 
+    StyleBox["z", "TI"]}], TraditionalForm]], "InlineFormula"],
+ " at the origin. "
+}], "MathCaption",
+ CellID->16622],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"NumResidue", "[", 
+  RowBox[{
+   FractionBox["1", "z"], ",", 
+   RowBox[{"{", 
+    RowBox[{"z", ",", "0"}], "}"}]}], "]"}]], "Input",
+ CellLabel->"In[8]:=",
+ CellID->16390],
+
+Cell[BoxData["1.`"], "Output",
+ ImageSize->{18, 15},
+ ImageMargins->{{0, 0}, {0, 0}},
+ ImageRegion->{{0, 1}, {0, 1}},
+ CellLabel->"Out[8]=",
+ CellID->6961506]
+}, Open  ]],
+
+Cell["Define an expression whose residue you will find. ", "MathCaption",
+ CellID->22729],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"f", "=", 
+  FractionBox["1", 
+   RowBox[{"Expand", "[", 
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{"z", "-", "1.7"}], ")"}], " ", 
+     RowBox[{"(", 
+      RowBox[{"z", "+", ".2", "+", 
+       RowBox[{".5", " ", "\[ImaginaryI]"}]}], ")"}], " ", 
+     RowBox[{"(", 
+      RowBox[{"z", "+", ".2", "-", 
+       RowBox[{".5", " ", "\[ImaginaryI]"}]}], ")"}]}], "]"}]]}]], "Input",
+ CellLabel->"In[9]:=",
+ CellID->27477],
+
+Cell[BoxData[
+ FractionBox["1", 
+  RowBox[{
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{"-", "0.493`"}], "-", 
+     RowBox[{"7.209944447028604`*^-18", " ", "\[ImaginaryI]"}]}], ")"}], "-", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{"0.39`", "\[InvisibleSpace]", "+", 
+      RowBox[{"0.`", " ", "\[ImaginaryI]"}]}], ")"}], " ", "z"}], "-", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{"1.3`", "\[InvisibleSpace]", "+", 
+      RowBox[{"0.`", " ", "\[ImaginaryI]"}]}], ")"}], " ", 
+    SuperscriptBox["z", "2"]}], "+", 
+   SuperscriptBox["z", "3"]}]]], "Output",
+ ImageSize->{402, 37},
+ ImageMargins->{{0, 0}, {0, 0}},
+ ImageRegion->{{0, 1}, {0, 1}},
+ CellLabel->"Out[9]=",
+ CellID->238965344]
+}, Open  ]],
+
+Cell[TextData[{
+ "Find the residue. Strictly speaking, ",
+ StyleBox["f", "MR"],
+ " has no singularity at ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    StyleBox["z", "TI"], "=", "1.7"}], TraditionalForm]], "InlineFormula"],
+ ", but it has one very near to 1.7. "
+}], "MathCaption",
+ CellID->20455],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Residue", "[", 
+  RowBox[{"f", ",", 
+   RowBox[{"{", 
+    RowBox[{"z", ",", "1.7"}], "}"}]}], "]"}]], "Input",
+ CellLabel->"In[10]:=",
+ CellID->20334],
+
+Cell[BoxData["0"], "Output",
+ ImageSize->{11, 15},
+ ImageMargins->{{0, 0}, {0, 0}},
+ ImageRegion->{{0, 1}, {0, 1}},
+ CellLabel->"Out[10]=",
+ CellID->43120869]
+}, Open  ]],
+
+Cell["Numerically find the residue. ", "MathCaption",
+ CellID->23883],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"NumResidue", "[", 
+  RowBox[{"f", ",", 
+   RowBox[{"{", 
+    RowBox[{"z", ",", "1.7"}], "}"}]}], "]"}]], "Input",
+ CellLabel->"In[11]:=",
+ CellID->19662],
+
+Cell[BoxData[
+ RowBox[{"0.2590673575129538`", "\[InvisibleSpace]", "-", 
+  RowBox[{"4.005455924224868`*^-17", " ", "\[ImaginaryI]"}]}]], "Output",
+ ImageSize->{170, 15},
+ ImageMargins->{{0, 0}, {0, 0}},
+ ImageRegion->{{0, 1}, {0, 1}},
+ CellLabel->"Out[11]=",
+ CellID->263378885]
+}, Open  ]],
+
+Cell["This is another way to find the residue. ", "MathCaption",
+ CellID->13284],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  FractionBox["1", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{"z", "+", ".2", "+", 
+      RowBox[{".5", " ", "\[ImaginaryI]"}]}], ")"}], " ", 
+    RowBox[{"(", 
+     RowBox[{"z", "+", ".2", "-", 
+      RowBox[{".5", " ", "\[ImaginaryI]"}]}], ")"}]}]], "/.", 
+  "\[InvisibleSpace]", 
+  RowBox[{"z", "\[Rule]", "1.7"}]}]], "Input",
+ CellLabel->"In[12]:=",
+ CellID->29804],
+
+Cell[BoxData[
+ RowBox[{"0.25906735751295334`", "\[InvisibleSpace]", "+", 
+  RowBox[{"0.`", " ", "\[ImaginaryI]"}]}]], "Output",
+ ImageSize->{94, 15},
+ ImageMargins->{{0, 0}, {0, 0}},
+ ImageRegion->{{0, 1}, {0, 1}},
+ CellLabel->"Out[12]=",
+ CellID->47685317]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Numerical Calculation of Series Expansions", "Section",
+ CellID->32197],
+
+Cell[TextData[{
+ "The ",
+ StyleBox["Mathematica",
+  FontSlant->"Italic"],
+ " function ",
+ Cell[BoxData[
+  ButtonBox["Series",
+   BaseStyle->"Link",
+   ButtonData->"paclet:ref/Series"]], "InlineFormula"],
+ " finds a power series expansion of a function about a point by evaluating \
+derivatives. However, sometimes you only want a numerical approximation to a \
+series and the derivatives are difficult to evaluate. You could use ",
+ Cell[BoxData[
+  ButtonBox["ND",
+   BaseStyle->"Link",
+   ButtonData->"paclet:NumericalAnalysis/ref/ND"]], "InlineFormula"],
+ " to evaluate the derivatives, but that would involve repeating most of the \
+work (",
+ StyleBox["i.e.",
+  FontSlant->"Italic"],
+ ", evaluating the function itself at several points) for each derivative. If \
+the function is analytic and can be evaluated in the complex plane, the \
+solution is to use the ",
+ Cell[BoxData[
+  ButtonBox["NumSeries",
+   BaseStyle->"Link",
+   ButtonData->"paclet:NumericalAnalysis/ref/NumSeries"]], "InlineFormula"],
+ ". "
+}], "Text",
+ CellID->19192],
+
+Cell[BoxData[GridBox[{
+   {
+    RowBox[{
+     ButtonBox["NumSeries",
+      BaseStyle->"Link",
+      ButtonData->"paclet:NumericalAnalysis/ref/NumSeries"], "[", 
+     StyleBox["f", "TI"], ",", "{", 
+     StyleBox["x", "TI"], ",", 
+     SubscriptBox[
+      StyleBox["x", "TI"], "0"], ",", 
+     StyleBox["n", "TI"], "}", "]"}], Cell[TextData[{
+     "give a numerical approximation to the series expansion of ",
+     Cell[BoxData[
+      StyleBox["f", "TI"]], "InlineFormula"],
+     " about ",
+     Cell[BoxData[
+      RowBox[{
+       StyleBox["x", "TI"], "=", 
+       SubscriptBox[
+        StyleBox["x", "TI"], "0"]}]], "InlineFormula"],
+     " including the terms ",
+     Cell[BoxData[
+      SuperscriptBox[
+       RowBox[{"(", 
+        RowBox[{
+         StyleBox["x", "TI"], "-", 
+         SubscriptBox[
+          StyleBox["x", "TI"], "0"]}], ")"}], 
+       RowBox[{"-", 
+        StyleBox["n", "TI"]}]]], "InlineFormula"],
+     " through ",
+     Cell[BoxData[
+      SuperscriptBox[
+       RowBox[{"(", 
+        RowBox[{
+         StyleBox["x", "TI"], "-", 
+         SubscriptBox[
+          StyleBox["x", "TI"], "0"]}], ")"}], 
+       StyleBox["n", "TI"]]], "InlineFormula"],
+     " "
+    }], "TableText"]}
+  }]], "DefinitionBox",
+ GridBoxOptions->{
+ GridBoxDividers->{
+  "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
+   "RowsIndexed" -> {}}},
+ CellID->19045],
+
+Cell["Numerically finding series expansions. ", "Caption",
+ CellID->7357],
+
+Cell[TextData[{
+ Cell[BoxData[
+  ButtonBox["NumSeries",
+   BaseStyle->"Link",
+   ButtonData->"paclet:NumericalAnalysis/ref/NumSeries"]], "InlineFormula"],
+ " works by evaluating the function at discrete points on a circle centered \
+at the expansion point. It then uses ",
+ Cell[BoxData[
+  ButtonBox["InverseFourier",
+   BaseStyle->"Link",
+   ButtonData->"paclet:ref/InverseFourier"]], "InlineFormula"],
+ " to express the function as a sum of orthogonal basis functions, each of \
+which is trivial to integrate around the circle. By Cauchy\[CloseCurlyQuote]s \
+integral formula it is seen that ",
+ Cell[BoxData[
+  ButtonBox["InverseFourier",
+   BaseStyle->"Link",
+   ButtonData->"paclet:ref/InverseFourier"]], "InlineFormula"],
+ " essentially gives us the required series coefficients; very little \
+additional work is required and ",
+ Cell[BoxData[
+  ButtonBox["NumSeries",
+   BaseStyle->"Link",
+   ButtonData->"paclet:NumericalAnalysis/ref/NumSeries"]], "InlineFormula"],
+ " does it all for you. Because it is based on Cauchy\[CloseCurlyQuote]s \
+integral formula, care should be taken to ensure that no singularities of the \
+function occur inside the circle of sample points. "
+}], "Text",
+ CellID->25290],
+
+Cell[BoxData[GridBox[{
+   {Cell["option name", "TableHeader"], Cell["default value", "TableHeader"], 
+    " "},
+   {
+    ButtonBox["WorkingPrecision",
+     BaseStyle->"Link",
+     ButtonData->"paclet:ref/WorkingPrecision"], 
+    ButtonBox["MachinePrecision",
+     BaseStyle->"Link",
+     ButtonData->"paclet:ref/MachinePrecision"], Cell[
+    "precision of the arithmetic to use in calculations ", "TableText"]}
+  }]], "DefinitionBox3Col",
+ GridBoxOptions->{
+ GridBoxDividers->{
+  "Columns" -> {{False}}, "ColumnsIndexed" -> {}, 
+   "Rows" -> {False, True, {False}, False}, "RowsIndexed" -> {}}},
+ CellID->3225],
+
+Cell[TextData[{
+ "Options for ",
+ Cell[BoxData[
+  ButtonBox["NumSeries",
+   BaseStyle->"Link",
+   ButtonData->"paclet:NumericalAnalysis/ref/NumSeries"]], "InlineFormula"],
+ "."
+}], "Caption",
+ CellID->16825],
+
+Cell[TextData[{
+ "This gives an approximation to the series expansion of ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox[
+    StyleBox["e", "TI"], 
+    StyleBox["x", "TI"]], TraditionalForm]], "InlineFormula"],
+ " about the origin. Note that ",
+ Cell[BoxData[
+  ButtonBox["NumSeries",
+   BaseStyle->"Link",
+   ButtonData->"paclet:NumericalAnalysis/ref/NumSeries"]], "InlineFormula"],
+ " is unable to recognize small numbers that should in fact be zero. "
+}], "MathCaption",
+ CellID->26053],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"NumSeries", "[", 
+  RowBox[{
+   SuperscriptBox["\[ExponentialE]", "x"], ",", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", "0", ",", "3"}], "}"}]}], "]"}]], "Input",
+ CellLabel->"In[13]:=",
+ CellID->19391],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{
+   FractionBox[
+    RowBox[{"1.6059029106507694`*^-10", "+", 
+     RowBox[{"1.290232192985953`*^-16", " ", "\[ImaginaryI]"}]}], 
+    SuperscriptBox["x", "3"]], "+", 
+   FractionBox[
+    RowBox[{"1.1470609184716096`*^-11", "-", 
+     RowBox[{"3.8817598547801344`*^-17", " ", "\[ImaginaryI]"}]}], 
+    SuperscriptBox["x", "2"]], "+", 
+   FractionBox[
+    RowBox[{"7.646747818279565`*^-13", "-", 
+     RowBox[{"5.832691610689986`*^-17", " ", "\[ImaginaryI]"}]}], "x"], "+", 
+   RowBox[{"(", 
+    RowBox[{"1.0000000000000477`", "\[InvisibleSpace]", "-", 
+     RowBox[{"1.800091683607966`*^-17", " ", "\[ImaginaryI]"}]}], ")"}], "+", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{"1.0000000000000027`", "\[InvisibleSpace]", "-", 
+      RowBox[{"1.7628811247332274`*^-16", " ", "\[ImaginaryI]"}]}], ")"}], 
+    " ", "x"}], "+", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{"0.5000000000000002`", "\[InvisibleSpace]", "-", 
+      RowBox[{"1.4290100710640976`*^-16", " ", "\[ImaginaryI]"}]}], ")"}], 
+    " ", 
+    SuperscriptBox["x", "2"]}], "+", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{"0.1666666666666667`", "\[InvisibleSpace]", "-", 
+      RowBox[{"6.70005334867839`*^-17", " ", "\[ImaginaryI]"}]}], ")"}], " ", 
+    SuperscriptBox["x", "3"]}], "+", 
+   InterpretationBox[
+    SuperscriptBox[
+     RowBox[{"O", "[", "x", "]"}], "4"],
+    SeriesData[$CellContext`x, 0, {}, -3, 4, 1],
+    Editable->False]}],
+  SeriesData[$CellContext`x, 0, {
+    Complex[1.6059029106507694`*^-10, 1.290232192985953*^-16], 
+    Complex[1.1470609184716096`*^-11, -3.8817598547801344`*^-17], 
+    Complex[7.646747818279565*^-13, -5.832691610689986*^-17], 
+    Complex[1.0000000000000477`, -1.800091683607966*^-17], 
+    Complex[1.0000000000000027`, -1.7628811247332274`*^-16], 
+    Complex[0.5000000000000002, -1.4290100710640976`*^-16], 
+    Complex[0.1666666666666667, -6.70005334867839*^-17]}, -3, 4, 1],
+  Editable->False]], "Output",
+ ImageSize->{541, 89},
+ ImageMargins->{{0, 0}, {0, 0}},
+ ImageRegion->{{0, 1}, {0, 1}},
+ CellLabel->"Out[13]=",
+ CellID->198831815]
+}, Open  ]],
+
+Cell[TextData[{
+ Cell[BoxData[
+  ButtonBox["Chop",
+   BaseStyle->"Link",
+   ButtonData->"paclet:ref/Chop"]], "InlineFormula"],
+ " and ",
+ Cell[BoxData[
+  ButtonBox["Rationalize",
+   BaseStyle->"Link",
+   ButtonData->"paclet:ref/Rationalize"]], "InlineFormula"],
+ " can often clean up the result. "
+}], "MathCaption",
+ CellID->27664],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Rationalize", "[", 
+  RowBox[{"Chop", "[", "%", "]"}], "]"}]], "Input",
+ CellLabel->"In[14]:=",
+ CellID->6364],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{
+   FractionBox["1.6059029106507694`*^-10", 
+    SuperscriptBox["x", "3"]], "+", "1", "+", "x", "+", 
+   FractionBox[
+    SuperscriptBox["x", "2"], "2"], "+", 
+   FractionBox[
+    SuperscriptBox["x", "3"], "6"], "+", 
+   InterpretationBox[
+    SuperscriptBox[
+     RowBox[{"O", "[", "x", "]"}], "4"],
+    SeriesData[$CellContext`x, 0, {}, -3, 4, 1],
+    Editable->False]}],
+  SeriesData[$CellContext`x, 0, {1.6059029106507694`*^-10, 0, 0, 1, 1, 
+    Rational[1, 2], 
+    Rational[1, 6]}, -3, 4, 1],
+  Editable->False]], "Output",
+ ImageSize->{239, 35},
+ ImageMargins->{{0, 0}, {0, 0}},
+ ImageRegion->{{0, 1}, {0, 1}},
+ CellLabel->"Out[14]=",
+ CellID->193757252]
+}, Open  ]],
+
+Cell[TextData[{
+ Cell[BoxData[
+  ButtonBox["NumSeries",
+   BaseStyle->"Link",
+   ButtonData->"paclet:NumericalAnalysis/ref/NumSeries"]], "InlineFormula"],
+ " also recognizes poles. "
+}], "MathCaption",
+ CellID->23438],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Chop", "[", 
+  RowBox[{"NumSeries", "[", 
+   RowBox[{
+    RowBox[{"Zeta", "[", "s", "]"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"s", ",", "1", ",", "5"}], "}"}]}], "]"}], "]"}]], "Input",
+ CellLabel->"In[15]:=",
+ CellID->14136],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{
+   FractionBox["1", 
+    RowBox[{"s", "-", "1"}]], "+", "0.5772156649015326`", "+", 
+   RowBox[{"0.07281584548367666`", " ", 
+    RowBox[{"(", 
+     RowBox[{"s", "-", "1"}], ")"}]}], "-", 
+   RowBox[{"0.004845181596436296`", " ", 
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{"s", "-", "1"}], ")"}], "2"]}], "-", 
+   RowBox[{"0.00034230573671705`", " ", 
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{"s", "-", "1"}], ")"}], "3"]}], "+", 
+   RowBox[{"0.00009689041939411413`", " ", 
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{"s", "-", "1"}], ")"}], "4"]}], "-", 
+   RowBox[{"6.611031810597621`*^-6", " ", 
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{"s", "-", "1"}], ")"}], "5"]}], "+", 
+   InterpretationBox[
+    SuperscriptBox[
+     RowBox[{"O", "[", 
+      RowBox[{"s", "-", "1"}], "]"}], "6"],
+    SeriesData[$CellContext`s, 1, {}, -1, 6, 1],
+    Editable->False]}],
+  SeriesData[$CellContext`s, 1, {1., 0.5772156649015326, 
+   0.07281584548367666, -0.004845181596436296, -0.00034230573671705, 
+   0.00009689041939411413, -6.611031810597621*^-6}, -1, 6, 1],
+  Editable->False]], "Output",
+ ImageSize->{501, 48},
+ ImageMargins->{{0, 0}, {0, 0}},
+ ImageRegion->{{0, 1}, {0, 1}},
+ CellLabel->"Out[15]=",
+ CellID->135681295]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+
+Cell[" ", "FooterCell"]
+},
+Saveable->False,
+ScreenStyleEnvironment->"Working",
+WindowSize->{725, 750},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+WindowTitle->"Numerical Analysis Package - Wolfram Mathematica",
+TaggingRules->{
+ "ModificationHighlight" -> False, "ColorType" -> "TutorialColor", 
+  "LinkTrails" -> GridBox[{{
+      RowBox[{
+        ButtonBox[
+        "Numerical Analysis Package PVB245654", ButtonData -> 
+         "paclet:NumericalAnalysis/guide/NumericalAnalysis", 
+         BaseStyle -> {"Link", "DockedLinkTrail"}], 
+        Cell[">", "DockedLinkTrailSeparator"]}]}}, ColumnAlignments -> Left], 
+  "Metadata" -> {
+   "built" -> "{2014, 10, 4, 20, 24, 40.4164432}", 
+    "history" -> {"1", "", "", ""}, "context" -> "NumericalAnalysis`", 
+    "keywords" -> {}, "specialkeywords" -> {}, 
+    "tutorialcollectionlinks" -> {}, "index" -> True, "label" -> 
+    "Numerical Analysis Tutorial", "language" -> "en", "paclet" -> 
+    "NumericalAnalysis", "status" -> "None", "summary" -> 
+    "The functions defined in the NumericalAnalysis` context provide support \
+for finding numerical solutions to calculus-related problems. This loads the \
+package: The built-in function Limit computes limits using symbolic and \
+analytic methods. The function NumLimit contained in the NumericalAnalysis \
+package works by numerically evaluating a short sequence of function values \
+as the argument approaches the specified point. The result of this \
+calculation is passed to a routine that uses either Wynn's \
+\[Epsilon]-algorithm or a generalized Euler transformation to find an \
+approximation to the limit. ", "synonyms" -> {}, "title" -> 
+    "Numerical Analysis Package", "titlemodifier" -> "", "windowtitle" -> 
+    "Numerical Analysis Package", "type" -> "Tutorial", "uri" -> 
+    "NumericalAnalysis/tutorial/NumericalAnalysis"}, "SearchTextTranslated" -> 
+  ""},
+FrontEndVersion->"10.0 for Microsoft Windows (64-bit) (September 9, 2014)",
+StyleDefinitions->Notebook[{
+   Cell[
+    StyleData[
+    StyleDefinitions -> FrontEnd`FileName[{"Wolfram"}, "Reference.nb"]]], 
+   Cell[
+    StyleData["Input"], CellContext -> Notebook], 
+   Cell[
+    StyleData["Output"], CellContext -> Notebook], 
+   Cell[
+    StyleData["TutorialMoreAboutSection"], 
+    CellGroupingRules -> {"SectionGrouping", 30}], 
+   Cell[
+    StyleData["RelatedTutorialsSection"], 
+    CellGroupingRules -> {"SectionGrouping", 30}], 
+   Cell[
+    StyleData["TutorialRelatedLinksSection"], 
+    CellGroupingRules -> {"SectionGrouping", 30}]}, Visible -> False, 
+  FrontEndVersion -> 
+  "10.0 for Microsoft Windows (64-bit) (September 9, 2014)", StyleDefinitions -> 
+  "Default.nb"]
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[620, 21, 3010, 66, 70, "AnchorBarGrid",
+ CellID->1],
+Cell[CellGroupData[{
+Cell[3655, 91, 63, 1, 70, "Title",
+ CellID->509267359],
+Cell[3721, 94, 229, 6, 70, "Text",
+ CellID->1534169418],
+Cell[3953, 102, 67, 1, 70, "MathCaption",
+ CellID->1825449234],
+Cell[4023, 105, 106, 3, 70, "Input",
+ CellID->1373894796],
+Cell[CellGroupData[{
+Cell[4154, 112, 65, 1, 70, "Section",
+ CellID->2591],
+Cell[4222, 115, 997, 25, 70, "Text",
+ CellID->16706],
+Cell[5222, 142, 716, 23, 70, "DefinitionBox",
+ CellID->19362],
+Cell[5941, 167, 63, 1, 70, "Caption",
+ CellID->19031],
+Cell[6007, 170, 84, 1, 70, "MathCaption",
+ CellID->6421],
+Cell[CellGroupData[{
+Cell[6116, 175, 259, 9, 70, "Input",
+ CellID->27111],
+Cell[6378, 186, 174, 5, 36, "Output",
+ CellID->81101645]
+}, Open  ]],
+Cell[6567, 194, 108, 2, 70, "MathCaption",
+ CellID->7348],
+Cell[CellGroupData[{
+Cell[6700, 200, 101, 3, 70, "Input",
+ CellID->3464],
+Cell[6804, 205, 176, 5, 36, "Output",
+ CellID->184857534]
+}, Open  ]],
+Cell[6995, 213, 199, 7, 70, "MathCaption",
+ CellID->25569],
+Cell[CellGroupData[{
+Cell[7219, 224, 408, 14, 70, "Input",
+ CellID->2989],
+Cell[7630, 240, 175, 5, 36, "Output",
+ CellID->37473145]
+}, Open  ]],
+Cell[7820, 248, 1025, 27, 70, "DefinitionBox3Col",
+ CellID->2017],
+Cell[8848, 277, 205, 8, 70, "Caption",
+ CellID->21763],
+Cell[9056, 287, 248, 5, 70, "Text",
+ CellID->17753],
+Cell[9307, 294, 526, 15, 70, "Text",
+ CellID->26307],
+Cell[9836, 311, 1319, 43, 70, "DefinitionBox",
+ CellID->6442],
+Cell[11158, 356, 73, 1, 70, "Caption",
+ CellID->27758],
+Cell[11234, 359, 420, 16, 70, "MathCaption",
+ CellID->6249],
+Cell[CellGroupData[{
+Cell[11679, 379, 200, 6, 70, "Input",
+ CellID->13196],
+Cell[11882, 387, 193, 6, 36, "Output",
+ CellID->869050492]
+}, Open  ]],
+Cell[12090, 396, 357, 9, 70, "MathCaption",
+ CellID->29449],
+Cell[CellGroupData[{
+Cell[12472, 409, 613, 19, 70, "Input",
+ CellID->23083],
+Cell[13088, 430, 179, 5, 36, "Output",
+ CellID->860766771]
+}, Open  ]],
+Cell[13282, 438, 145, 4, 70, "MathCaption",
+ CellID->15204],
+Cell[CellGroupData[{
+Cell[13452, 446, 622, 19, 70, "Input",
+ CellID->31242],
+Cell[14077, 467, 279, 8, 36, "Output",
+ CellID->195240984]
+}, Open  ]],
+Cell[14371, 478, 1058, 28, 70, "DefinitionBox3Col",
+ CellID->5317],
+Cell[15432, 508, 197, 8, 70, "Caption",
+ CellID->32656],
+Cell[15632, 518, 554, 15, 70, "Text",
+ CellID->11452]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[16223, 538, 68, 1, 70, "Section",
+ CellID->30767],
+Cell[16294, 541, 395, 13, 70, "Text",
+ CellID->3951],
+Cell[16692, 556, 742, 16, 70, "Text",
+ CellID->16117],
+Cell[17437, 574, 843, 28, 70, "DefinitionBox",
+ CellID->8707],
+Cell[18283, 604, 69, 1, 70, "Caption",
+ CellID->28587],
+Cell[18355, 607, 1092, 34, 70, "DefinitionBox",
+ CellID->32556],
+Cell[19450, 643, 209, 8, 70, "Caption",
+ CellID->4207],
+Cell[19662, 653, 207, 8, 70, "MathCaption",
+ CellID->16622],
+Cell[CellGroupData[{
+Cell[19894, 665, 196, 7, 70, "Input",
+ CellID->16390],
+Cell[20093, 674, 158, 5, 36, "Output",
+ CellID->6961506]
+}, Open  ]],
+Cell[20266, 682, 89, 1, 70, "MathCaption",
+ CellID->22729],
+Cell[CellGroupData[{
+Cell[20380, 687, 443, 14, 70, "Input",
+ CellID->27477],
+Cell[20826, 703, 689, 21, 58, "Output",
+ CellID->238965344]
+}, Open  ]],
+Cell[21530, 727, 295, 10, 70, "MathCaption",
+ CellID->20455],
+Cell[CellGroupData[{
+Cell[21850, 741, 174, 6, 70, "Input",
+ CellID->20334],
+Cell[22027, 749, 158, 5, 36, "Output",
+ CellID->43120869]
+}, Open  ]],
+Cell[22200, 757, 69, 1, 70, "MathCaption",
+ CellID->23883],
+Cell[CellGroupData[{
+Cell[22294, 762, 177, 6, 70, "Input",
+ CellID->19662],
+Cell[22474, 770, 278, 7, 36, "Output",
+ CellID->263378885]
+}, Open  ]],
+Cell[22767, 780, 80, 1, 70, "MathCaption",
+ CellID->13284],
+Cell[CellGroupData[{
+Cell[22872, 785, 394, 13, 70, "Input",
+ CellID->29804],
+Cell[23269, 800, 257, 7, 36, "Output",
+ CellID->47685317]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[23575, 813, 77, 1, 70, "Section",
+ CellID->32197],
+Cell[23655, 816, 1039, 29, 70, "Text",
+ CellID->19192],
+Cell[24697, 847, 1380, 46, 70, "DefinitionBox",
+ CellID->19045],
+Cell[26080, 895, 73, 1, 70, "Caption",
+ CellID->7357],
+Cell[26156, 898, 1209, 28, 70, "Text",
+ CellID->25290],
+Cell[27368, 928, 610, 16, 70, "DefinitionBox3Col",
+ CellID->3225],
+Cell[27981, 946, 207, 8, 70, "Caption",
+ CellID->16825],
+Cell[28191, 956, 488, 14, 70, "MathCaption",
+ CellID->26053],
+Cell[CellGroupData[{
+Cell[28704, 974, 223, 7, 70, "Input",
+ CellID->19391],
+Cell[28930, 983, 2091, 51, 110, "Output",
+ CellID->198831815]
+}, Open  ]],
+Cell[31036, 1037, 332, 12, 70, "MathCaption",
+ CellID->27664],
+Cell[CellGroupData[{
+Cell[31393, 1053, 134, 4, 70, "Input",
+ CellID->6364],
+Cell[31530, 1059, 705, 22, 56, "Output",
+ CellID->193757252]
+}, Open  ]],
+Cell[32250, 1084, 217, 7, 70, "MathCaption",
+ CellID->23438],
+Cell[CellGroupData[{
+Cell[32492, 1095, 251, 8, 70, "Input",
+ CellID->14136],
+Cell[32746, 1105, 1304, 38, 69, "Output",
+ CellID->135681295]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+Cell[34089, 1148, 23, 0, 70, "FooterCell"]
+}
+]
+*)
+
+(* End of internal cache information *)
+

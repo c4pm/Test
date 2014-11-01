@@ -1,0 +1,1055 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     28439,       1045]
+NotebookOptionsPosition[     22297,        832]
+NotebookOutlinePosition[     24076,        878]
+CellTagsIndexPosition[     23991,        873]
+WindowTitle->NumResidue - Wolfram Mathematica
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[GridBox[{
+   {Cell["NUMERICAL ANALYSIS SYMBOL", "PacletNameCell"], Cell[TextData[{
+     Cell[BoxData[
+      ActionMenuBox[
+       FrameBox["\<\"Tutorials \[RightGuillemet]\"\>",
+        StripOnInput->False], {"\<\"Numerical Analysis Package\"\>":>
+       Documentation`HelpLookup[
+       "paclet:NumericalAnalysis/tutorial/NumericalAnalysis"]},
+       Appearance->None,
+       MenuAppearance->Automatic]],
+      LineSpacing->{1.4, 0}],
+     "\[ThickSpace]\[ThickSpace]\[ThickSpace]\[ThickSpace]\[ThickSpace]\
+\[ThickSpace]",
+     Cell[BoxData[
+      ActionMenuBox[
+       FrameBox["\<\"See Also \[RightGuillemet]\"\>",
+        StripOnInput->False], {"\<\"NumSeries\"\>":>Documentation`HelpLookup[
+       "paclet:NumericalAnalysis/ref/NumSeries"], "\<\"Residue\"\>":>
+       Documentation`HelpLookup["paclet:ref/Residue"], "\<\"NumLimit\"\>":>
+       Documentation`HelpLookup[
+       "paclet:NumericalAnalysis/ref/NumLimit"], "\<\"NumD\"\>":>
+       Documentation`HelpLookup["paclet:NumericalAnalysis/ref/NumD"]},
+       Appearance->None,
+       MenuAppearance->Automatic]],
+      LineSpacing->{1.4, 0}],
+     "\[ThickSpace]\[ThickSpace]\[ThickSpace]\[ThickSpace]\[ThickSpace]\
+\[ThickSpace]",
+     Cell[BoxData[
+      ActionMenuBox[
+       FrameBox["\<\"More About \[RightGuillemet]\"\>",
+        StripOnInput->False], {"\<\"Numerical Analysis Package\"\>":>
+       Documentation`HelpLookup[
+       "paclet:NumericalAnalysis/guide/NumericalAnalysisPackage"]},
+       Appearance->None,
+       MenuAppearance->Automatic]],
+      LineSpacing->{1.4, 0}],
+     "\[ThickSpace]\[ThickSpace]\[ThickSpace]\[ThickSpace]\[ThickSpace]\
+\[ThickSpace]",
+     Cell[BoxData[
+      ActionMenuBox[
+       FrameBox["\<\"URL \[RightGuillemet]\"\>",
+        StripOnInput->False], {"\<\"NumericalAnalysis/ref/NResidue\"\>":>
+       None, "\<\"Copy Mathematica url\"\>":>
+       Module[{DocumentationSearch`Private`nb$}, 
+        DocumentationSearch`Private`nb$ = NotebookPut[
+           Notebook[{
+             Cell["NumericalAnalysis/ref/NResidue"]}, Visible -> False]]; 
+        SelectionMove[DocumentationSearch`Private`nb$, All, Notebook]; 
+        FrontEndTokenExecute[DocumentationSearch`Private`nb$, "Copy"]; 
+        NotebookClose[DocumentationSearch`Private`nb$]; Null], 
+       Delimiter, "\<\"Copy web url\"\>":>
+       Module[{DocumentationSearch`Private`nb$}, 
+        DocumentationSearch`Private`nb$ = NotebookPut[
+           Notebook[{
+             Cell[
+              BoxData[
+               MakeBoxes[
+                Hyperlink[
+                "http://reference.wolfram.com/mathematica/NumericalAnalysis/\
+ref/NResidue.html"], StandardForm]], "Input", TextClipboardType -> 
+              "PlainText"]}, Visible -> False]]; 
+        SelectionMove[DocumentationSearch`Private`nb$, All, Notebook]; 
+        FrontEndTokenExecute[DocumentationSearch`Private`nb$, "Copy"]; 
+        NotebookClose[DocumentationSearch`Private`nb$]; 
+        Null], "\<\"Go to web url\"\>":>FrontEndExecute[{
+         NotebookLocate[{
+           URL[
+            StringJoin[
+            "http://reference.wolfram.com/mathematica/", 
+             "NumericalAnalysis/ref/NResidue", ".html"]], None}]}]},
+       Appearance->None,
+       MenuAppearance->Automatic]],
+      LineSpacing->{1.4, 0}]
+    }], "AnchorBar"]}
+  }]], "AnchorBarGrid",
+ CellID->1],
+
+Cell["NumResidue", "ObjectName",
+ CellID->19659],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[GridBox[{
+   {"", Cell[TextData[{
+     Cell[BoxData[
+      RowBox[{"NumResidue", "[", 
+       RowBox[{
+        StyleBox["expr", "TI"], ",", 
+        RowBox[{"{", 
+         RowBox[{
+          StyleBox["z", "TI"], ",", 
+          SubscriptBox[
+           StyleBox["z", "TI"], 
+           StyleBox["0", "TR"]]}], "}"}]}], "]"}]], "InlineFormula"],
+     " \[LineSeparator]numerically finds the residue of ",
+     Cell[BoxData[
+      StyleBox["expr", "TI"]], "InlineFormula"],
+     " near the point ",
+     Cell[BoxData[
+      RowBox[{
+       StyleBox["z", "TI"], "=", 
+       SubscriptBox[
+        StyleBox["z", "TI"], 
+        StyleBox["0", "TR"]]}]], "InlineFormula"],
+     "."
+    }]]}
+  }]], "Usage",
+ GridBoxOptions->{
+ GridBoxBackground->{
+  "Columns" -> {{None}}, "ColumnsIndexed" -> {}, "Rows" -> {{None}}, 
+   "RowsIndexed" -> {}}},
+ CellID->24540],
+
+Cell[CellGroupData[{
+
+Cell[TextData[Cell[BoxData[
+ ButtonBox[
+  FrameBox[
+   StyleBox[
+    RowBox[{"MORE", " ", "INFORMATION"}], "NotesFrameText"],
+   StripOnInput->False],
+  Appearance->{Automatic, None},
+  BaseStyle->None,
+  ButtonFunction:>(FrontEndExecute[{
+     FrontEnd`SelectionMove[
+      FrontEnd`SelectedNotebook[], All, ButtonCell], 
+     FrontEndToken["OpenCloseGroup"], 
+     FrontEnd`SelectionMove[
+      FrontEnd`SelectedNotebook[], After, CellContents]}]& ),
+  Evaluator->None,
+  Method->"Preemptive"]]]], "NotesSection",
+ WholeCellGroupOpener->True,
+ CellGroupingRules->{"SectionGrouping", 50},
+ CellID->279144721],
+
+Cell[TextData[{
+ "The expression ",
+ Cell[BoxData[
+  StyleBox["expr", "TI"]], "InlineFormula"],
+ " must be numeric when its argument ",
+ Cell[BoxData[
+  StyleBox["x", "TI"]], "InlineFormula"],
+ " is numeric."
+}], "Notes",
+ CellID->29368],
+
+Cell[TextData[{
+ "The residue is defined as the coefficient of ",
+ Cell[BoxData[
+  SuperscriptBox[
+   RowBox[{"(", 
+    RowBox[{
+     StyleBox["z", "TI"], "-", 
+     SubscriptBox[
+      StyleBox["z", "TI"], 
+      StyleBox["0", "TR"]]}], ")"}], 
+   RowBox[{"-", 
+    StyleBox["1", "TR"]}]]], "InlineFormula"],
+ " in the Laurent expansion of ",
+ Cell[BoxData[
+  StyleBox["expr", "TI"]], "InlineFormula"],
+ "."
+}], "Notes",
+ CellID->10282],
+
+Cell[TextData[{
+ Cell[BoxData["NumResidue"], "InlineFormula"],
+ " numerically integrates around a small circle centered at the point ",
+ Cell[BoxData[
+  SubscriptBox[
+   StyleBox["z", "TI"], 
+   StyleBox["0", "TR"]]], "InlineFormula"],
+ " in the complex plane. ",
+ Cell[BoxData["NumResidue"], "InlineFormula"],
+ " will return an incorrect result when the punctured disk is not analytic."
+}], "Notes",
+ CellID->1848],
+
+Cell[TextData[{
+ Cell[BoxData["NumResidue"], "InlineFormula"],
+ " is unable to recognize small numbers that should in fact be zero. ",
+ Cell[BoxData[
+  ButtonBox["Chop",
+   BaseStyle->"Link",
+   ButtonData->"paclet:ref/Chop"]], "InlineFormula"],
+ " is often needed to eliminate these spurious residuals."
+}], "Notes",
+ CellID->20366],
+
+Cell[TextData[{
+ "Although ",
+ Cell[BoxData[
+  ButtonBox["Residue",
+   BaseStyle->"Link",
+   ButtonData->"paclet:ref/Residue"]], "InlineFormula"],
+ " usually needs to be able to evaluate power series at a point, ",
+ Cell[BoxData["NumResidue"], "InlineFormula"],
+ " can find residues even if the power series cannot be computed."
+}], "Notes",
+ CellID->23290],
+
+Cell[TextData[{
+ Cell[BoxData["NumResidue"], "InlineFormula"],
+ " has the same options as ",
+ Cell[BoxData[
+  ButtonBox["NIntegrate",
+   BaseStyle->"Link",
+   ButtonData->"paclet:ref/NIntegrate"]], "InlineFormula"],
+ ", with the following additions and changes:"
+}], "Notes",
+ CellID->3227],
+
+Cell[BoxData[GridBox[{
+   {Cell["      ", "TableRowIcon"], 
+    ButtonBox["Method",
+     BaseStyle->"Link",
+     ButtonData->"paclet:ref/Method"], "Trapezoidal", Cell[
+    "integration method to use", "TableText"]}
+  }]], "3ColumnTableMod",
+ GridBoxOptions->{
+ GridBoxBackground->{
+  "Columns" -> {{None}}, "ColumnsIndexed" -> {}, "Rows" -> {{None}}, 
+   "RowsIndexed" -> {}},
+ GridBoxDividers->{"Rows" -> {{True, True}}}},
+ CellID->14458]
+}, Closed]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[ButtonBox["EXAMPLES",
+ BaseStyle->None,
+ Appearance->{Automatic, None},
+ Evaluator->None,
+ Method->"Preemptive",
+ ButtonFunction:>(FrontEndExecute[{
+    FrontEnd`SelectionMove[
+     FrontEnd`SelectedNotebook[], All, ButtonCell], 
+    FrontEndToken["OpenCloseGroup"], 
+    FrontEnd`SelectionMove[
+     FrontEnd`SelectedNotebook[], After, 
+     CellContents]}]& )]], "PrimaryExamplesSection",
+ WholeCellGroupOpener->True,
+ CellTags->"PrimaryExamplesSection",
+ CellID->372646633],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ "Basic Examples",
+ "\[NonBreakingSpace]\[NonBreakingSpace]",
+ Cell["(1)", "ExampleCount"]
+}], "ExampleSection", "ExampleSection",
+ WholeCellGroupOpener->True,
+ CellID->307490697],
+
+Cell[BoxData[
+ RowBox[{"Needs", "[", "\"\<NumericalAnalysis`\>\"", "]"}]], "Input", \
+"Deemphasis",
+ CellLabel->"In[1]:=",
+ CellID->155925627],
+
+Cell[TextData[{
+ "Residue of the function ",
+ Cell[BoxData[
+  FractionBox["1", 
+   StyleBox["x", "TI"]]]],
+ " about the origin:"
+}], "ExampleText",
+ CellID->7730],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"NumResidue", "[", 
+  RowBox[{
+   FractionBox["1", "x"], ",", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", "0"}], "}"}]}], "]"}]], "Input",
+ CellLabel->"In[2]:=",
+ CellID->4075],
+
+Cell[BoxData["1.`"], "Output",
+ ImageSize->{18, 15},
+ ImageMargins->{{0, 0}, {0, 0}},
+ ImageRegion->{{0, 1}, {0, 1}},
+ CellLabel->"Out[2]=",
+ CellID->127134260]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ InterpretationBox[Cell[TextData[{
+   "Scope",
+   "\[NonBreakingSpace]\[NonBreakingSpace]",
+   Cell["(2)", "ExampleCount"]
+  }], "ExampleSection"],
+  $Line = 0; Null]], "ExampleSection", "ExampleSection",
+ WholeCellGroupOpener->True,
+ CellID->26194],
+
+Cell[BoxData[
+ RowBox[{"Needs", "[", "\"\<NumericalAnalysis`\>\"", "]"}]], "Input", \
+"Deemphasis",
+ CellLabel->"In[1]:=",
+ CellID->324530909],
+
+Cell[TextData[{
+ Cell[BoxData["NumResidue"], "InlineFormula"],
+ " can find residues of functions with essential singularities:"
+}], "ExampleText",
+ CellFrameLabels->{{None, None}, {None, None}},
+ CellID->22488],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"NumResidue", "[", 
+   RowBox[{
+    RowBox[{"Sin", "[", 
+     FractionBox["1", 
+      RowBox[{"10", "x"}]], "]"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"x", ",", "0"}], "}"}]}], "]"}], "//", "Chop"}]], "Input",
+ CellLabel->"In[2]:=",
+ CellID->28664],
+
+Cell[BoxData["0.10000000000000622`"], "Output",
+ ImageSize->{25, 15},
+ ImageMargins->{{0, 0}, {0, 0}},
+ ImageRegion->{{0, 1}, {0, 1}},
+ CellLabel->"Out[2]=",
+ CellID->1199702]
+}, Open  ]],
+
+Cell[TextData[{
+ "Since ",
+ Cell[BoxData[
+  ButtonBox["Series",
+   BaseStyle->"Link",
+   ButtonData->"paclet:ref/Series"]], "InlineFormula"],
+ " is unable to handle essential singularities, ",
+ Cell[BoxData[
+  ButtonBox["Residue",
+   BaseStyle->"Link",
+   ButtonData->"paclet:ref/Residue"]], "InlineFormula"],
+ " returns unevaluated:"
+}], "ExampleText",
+ CellID->27048],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Residue", "[", 
+  RowBox[{
+   RowBox[{"Sin", "[", 
+    FractionBox["1", 
+     RowBox[{"10", "x"}]], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", "0"}], "}"}]}], "]"}]], "Input",
+ CellLabel->"In[3]:=",
+ CellID->25358],
+
+Cell[BoxData[
+ RowBox[{"Residue", "[", 
+  RowBox[{
+   RowBox[{"Sin", "[", 
+    FractionBox["1", 
+     RowBox[{"10", " ", "x"}]], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", "0"}], "}"}]}], "]"}]], "Output",
+ ImageSize->{181, 33},
+ ImageMargins->{{0, 0}, {0, 0}},
+ ImageRegion->{{0, 1}, {0, 1}},
+ CellLabel->"Out[3]=",
+ CellID->66374631]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ InterpretationBox[Cell["\t", "ExampleDelimiter"],
+  $Line = 0; Null]], "ExampleDelimiter",
+ CellID->32487],
+
+Cell[BoxData[
+ RowBox[{"Needs", "[", "\"\<NumericalAnalysis`\>\"", "]"}]], "Input", \
+"Deemphasis",
+ CellLabel->"In[1]:=",
+ CellID->969307522],
+
+Cell[TextData[{
+ Cell[BoxData["NumResidue"], "InlineFormula"],
+ " allows for some error in the location of the pole:"
+}], "ExampleText",
+ CellID->19764],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"NumResidue", "[", 
+   RowBox[{
+    FractionBox["1", 
+     RowBox[{"1.7", "-", 
+      RowBox[{"2.7", "z"}], "+", 
+      SuperscriptBox["z", "2"]}]], ",", 
+    RowBox[{"{", 
+     RowBox[{"z", ",", "1."}], "}"}]}], "]"}], "//", "Chop"}]], "Input",
+ CellLabel->"In[2]:=",
+ CellID->23713],
+
+Cell[BoxData[
+ RowBox[{"-", "1.4285714285714202`"}]], "Output",
+ ImageSize->{61, 15},
+ ImageMargins->{{0, 0}, {0, 0}},
+ ImageRegion->{{0, 1}, {0, 1}},
+ CellLabel->"Out[2]=",
+ CellID->243339595]
+}, Open  ]],
+
+Cell[TextData[{
+ "Due to machine-precision arithmetic, ",
+ Cell[BoxData[
+  RowBox[{
+   StyleBox["z", "TI"], "\[Rule]", 
+   StyleBox[
+    RowBox[{
+     StyleBox["1", "TR"], "."}]]}]], "InlineFormula"],
+ " is not a pole:"
+}], "ExampleText",
+ CellID->12452],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  FractionBox["1", 
+   RowBox[{"1.7", "-", 
+    RowBox[{"2.7", "z"}], "+", 
+    SuperscriptBox["z", "2"]}]], "/.", 
+  RowBox[{"z", "->", "1."}]}]], "Input",
+ CellLabel->"In[3]:=",
+ CellID->18170],
+
+Cell[BoxData[
+ RowBox[{"-", "4.503599627370496`*^15"}]], "Output",
+ ImageSize->{90, 15},
+ ImageMargins->{{0, 0}, {0, 0}},
+ ImageRegion->{{0, 1}, {0, 1}},
+ CellLabel->"Out[3]=",
+ CellID->83907230]
+}, Open  ]],
+
+Cell[TextData[{
+ "With ",
+ Cell[BoxData[
+  ButtonBox["Residue",
+   BaseStyle->"Link",
+   ButtonData->"paclet:ref/Residue"]], "InlineFormula"],
+ ", the error in the location of the pole yields a result of zero:"
+}], "ExampleText",
+ CellID->6766],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Residue", "[", 
+  RowBox[{
+   FractionBox["1", 
+    RowBox[{"1.7", "-", 
+     RowBox[{"2.7", "z"}], "+", 
+     SuperscriptBox["z", "2"]}]], ",", 
+   RowBox[{"{", 
+    RowBox[{"z", ",", "1."}], "}"}]}], "]"}]], "Input",
+ CellLabel->"In[4]:=",
+ CellID->12704],
+
+Cell[BoxData["0"], "Output",
+ ImageSize->{11, 15},
+ ImageMargins->{{0, 0}, {0, 0}},
+ ImageRegion->{{0, 1}, {0, 1}},
+ CellLabel->"Out[4]=",
+ CellID->313133000]
+}, Open  ]]
+}, Open  ]]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ InterpretationBox[Cell[TextData[{
+   "Options",
+   "\[NonBreakingSpace]\[NonBreakingSpace]",
+   Cell["(1)", "ExampleCount"]
+  }], "ExampleSection"],
+  $Line = 0; Null]], "ExampleSection", "ExampleSection",
+ WholeCellGroupOpener->True,
+ CellID->20432],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ InterpretationBox[Cell[TextData[{
+   "WorkingPrecision",
+   "\[NonBreakingSpace]\[NonBreakingSpace]",
+   Cell["(1)", "ExampleCount"]
+  }], "ExampleSubsection"],
+  $Line = 0; Null]], "ExampleSubsection", "ExampleSubsection",
+ WholeCellGroupOpener->True,
+ CellID->15846],
+
+Cell[BoxData[
+ RowBox[{"Needs", "[", "\"\<NumericalAnalysis`\>\"", "]"}]], "Input", \
+"Deemphasis",
+ CellLabel->"In[1]:=",
+ CellID->782532174],
+
+Cell[TextData[{
+ Cell[BoxData["NumResidue"], "InlineFormula"],
+ " accepts options for ",
+ Cell[BoxData[
+  ButtonBox["NIntegrate",
+   BaseStyle->"Link",
+   ButtonData->"paclet:ref/NIntegrate"]], "InlineFormula"],
+ ", which are sometimes necessary to get an accurate result:"
+}], "ExampleText",
+ CellID->867371608],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"NumResidue", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"Exp", "[", 
+      FractionBox["1", "x"], "]"}], "+", 
+     RowBox[{"Exp", "[", 
+      FractionBox["1", 
+       RowBox[{"x", "-", 
+        FractionBox["1", "100"]}]], "]"}]}], ",", 
+    RowBox[{"{", 
+     RowBox[{"x", ",", "0"}], "}"}], ",", 
+    RowBox[{"Radius", "->", 
+     FractionBox["1", "200"]}], ",", 
+    RowBox[{"MaxRecursion", "->", "10"}], ",", 
+    RowBox[{"WorkingPrecision", "->", "100"}], ",", 
+    RowBox[{"PrecisionGoal", "->", "10"}]}], "]"}], "//", "Chop"}]], "Input",
+ CellLabel->"In[2]:=",
+ CellID->5456],
+
+Cell[BoxData["1.\
+000000000000000000000000002006386952700058392188864677721150893691694742347104\
+9834654174562762777301821727072697612`100.15051499783199"], "Output",
+ ImageSize->{578, 33},
+ ImageMargins->{{0, 0}, {0, 0}},
+ ImageRegion->{{0, 1}, {0, 1}},
+ CellLabel->"Out[2]=",
+ CellID->539072349]
+}, Open  ]]
+}, Closed]]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ InterpretationBox[Cell[TextData[{
+   "Applications",
+   "\[NonBreakingSpace]\[NonBreakingSpace]",
+   Cell["(2)", "ExampleCount"]
+  }], "ExampleSection"],
+  $Line = 0; Null]], "ExampleSection", "ExampleSection",
+ WholeCellGroupOpener->True,
+ CellID->19714],
+
+Cell[BoxData[
+ RowBox[{"Needs", "[", "\"\<NumericalAnalysis`\>\"", "]"}]], "Input", \
+"Deemphasis",
+ CellLabel->"In[1]:=",
+ CellID->80968281],
+
+Cell[TextData[{
+ "Use ",
+ Cell[BoxData["NumResidue"], "InlineFormula"],
+ " to evaluate derivatives of a function evaluated at a point:"
+}], "ExampleText",
+ CellID->25599],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"Derivative", "[", "10", "]"}], "[", "Zeta", "]"}], "[", "0", 
+   "]"}], "//", 
+  RowBox[{
+   RowBox[{"N", "[", 
+    RowBox[{"#", ",", 
+     RowBox[{"{", 
+      RowBox[{"30", ",", "30"}], "}"}]}], "]"}], "&"}]}]], "Input",
+ CellLabel->"In[2]:=",
+ CellID->30041],
+
+Cell[BoxData[
+ RowBox[{"-", 
+  "3.62879999945676588422029152776801105687968991`30.*^6"}]], "Output",
+ ImageSize->{260, 15},
+ ImageMargins->{{0, 0}, {0, 0}},
+ ImageRegion->{{0, 1}, {0, 1}},
+ CellLabel->"Out[2]=",
+ CellID->243858016]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"10", "!"}], 
+  RowBox[{"NumResidue", "[", 
+   RowBox[{
+    FractionBox[
+     RowBox[{"Zeta", "[", "x", "]"}], 
+     SuperscriptBox["x", "11"]], ",", 
+    RowBox[{"{", 
+     RowBox[{"x", ",", "0"}], "}"}], ",", 
+    RowBox[{"WorkingPrecision", "->", "30"}]}], "]"}]}]], "Input",
+ CellLabel->"In[3]:=",
+ CellID->18074],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+  "-", "3.62879999945676588422029152776790352579932644`27.023862259044414*^6"}\
+], "+", 
+  RowBox[{"0``20.464099226232637", " ", "\[ImaginaryI]"}]}]], "Output",
+ ImageSize->{317, 15},
+ ImageMargins->{{0, 0}, {0, 0}},
+ ImageRegion->{{0, 1}, {0, 1}},
+ CellLabel->"Out[3]=",
+ CellID->12324]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ InterpretationBox[Cell["\t", "ExampleDelimiter"],
+  $Line = 0; Null]], "ExampleDelimiter",
+ CellID->10344],
+
+Cell[BoxData[
+ RowBox[{"Needs", "[", "\"\<NumericalAnalysis`\>\"", "]"}]], "Input", \
+"Deemphasis",
+ CellLabel->"In[1]:=",
+ CellID->13713554],
+
+Cell["Residues of numerical functions:", "ExampleText",
+ CellID->29863],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"f", "[", 
+   RowBox[{"a_", "?", "NumericQ"}], "]"}], ":=", 
+  RowBox[{"NIntegrate", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"Exp", "[", 
+      FractionBox[
+       SuperscriptBox["t", "2"], "a"], "]"}], 
+     FractionBox["1", 
+      RowBox[{"10", "+", 
+       RowBox[{"a", " ", "t"}]}]]}], ",", 
+    RowBox[{"{", 
+     RowBox[{"t", ",", "0", ",", "1"}], "}"}]}], "]"}]}]], "Input",
+ CellLabel->"In[2]:=",
+ CellID->13749],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"NumResidue", "[", 
+   RowBox[{
+    RowBox[{"f", "[", "a", "]"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"a", ",", "0"}], "}"}]}], "]"}], "//", "Chop"}]], "Input",
+ CellLabel->"In[3]:=",
+ CellID->29276],
+
+Cell[BoxData["0.03251817677562594`"], "Output",
+ ImageSize->{67, 15},
+ ImageMargins->{{0, 0}, {0, 0}},
+ ImageRegion->{{0, 1}, {0, 1}},
+ CellLabel->"Out[3]=",
+ CellID->10597]
+}, Open  ]]
+}, Open  ]]
+}, Closed]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[ButtonBox["SEE ALSO",
+ BaseStyle->None,
+ Appearance->{Automatic, None},
+ Evaluator->None,
+ Method->"Preemptive",
+ ButtonFunction:>(FrontEndExecute[{
+    FrontEnd`SelectionMove[
+     FrontEnd`SelectedNotebook[], All, ButtonCell], 
+    FrontEndToken["OpenCloseGroup"], 
+    FrontEnd`SelectionMove[
+     FrontEnd`SelectedNotebook[], After, 
+     CellContents]}]& )]], "SeeAlsoSection",
+ WholeCellGroupOpener->True,
+ CellID->25434],
+
+Cell[TextData[{
+ Cell[BoxData[
+  StyleBox[
+   ButtonBox["NumSeries",
+    BaseStyle->"Link",
+    ButtonData->"paclet:NumericalAnalysis/ref/NumSeries"],
+   FontFamily->"Verdana"]], "InlineFormula"],
+ "\[NonBreakingSpace]",
+ StyleBox["\[MediumSpace]\[FilledVerySmallSquare]\[MediumSpace]", 
+  "InlineSeparator"],
+ " ",
+ Cell[BoxData[
+  StyleBox[
+   ButtonBox["Residue",
+    BaseStyle->"Link",
+    ButtonData->"paclet:ref/Residue"],
+   FontFamily->"Verdana"]], "InlineFormula"],
+ "\[NonBreakingSpace]",
+ StyleBox["\[MediumSpace]\[FilledVerySmallSquare]\[MediumSpace]", 
+  "InlineSeparator"],
+ " ",
+ Cell[BoxData[
+  StyleBox[
+   ButtonBox["NumLimit",
+    BaseStyle->"Link",
+    ButtonData->"paclet:NumericalAnalysis/ref/NumLimit"],
+   FontFamily->"Verdana"]], "InlineFormula"],
+ "\[NonBreakingSpace]",
+ StyleBox["\[MediumSpace]\[FilledVerySmallSquare]\[MediumSpace]", 
+  "InlineSeparator"],
+ " ",
+ Cell[BoxData[
+  StyleBox[
+   ButtonBox["NumD",
+    BaseStyle->"Link",
+    ButtonData->"paclet:NumericalAnalysis/ref/NumD"],
+   FontFamily->"Verdana"]], "InlineFormula"]
+}], "SeeAlso",
+ CellID->1770]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[ButtonBox["TUTORIALS",
+ BaseStyle->None,
+ Appearance->{Automatic, None},
+ Evaluator->None,
+ Method->"Preemptive",
+ ButtonFunction:>(FrontEndExecute[{
+    FrontEnd`SelectionMove[
+     FrontEnd`SelectedNotebook[], All, ButtonCell], 
+    FrontEndToken["OpenCloseGroup"], 
+    FrontEnd`SelectionMove[
+     FrontEnd`SelectedNotebook[], After, 
+     CellContents]}]& )]], "TutorialsSection",
+ WholeCellGroupOpener->True,
+ CellID->32071],
+
+Cell[TextData[ButtonBox["Numerical Analysis Package",
+ BaseStyle->"Link",
+ ButtonData->
+  "paclet:NumericalAnalysis/tutorial/NumericalAnalysis"]], "Tutorials",
+ CellID->30106]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[ButtonBox["MORE ABOUT",
+ BaseStyle->None,
+ Appearance->{Automatic, None},
+ Evaluator->None,
+ Method->"Preemptive",
+ ButtonFunction:>(FrontEndExecute[{
+    FrontEnd`SelectionMove[
+     FrontEnd`SelectedNotebook[], All, ButtonCell], 
+    FrontEndToken["OpenCloseGroup"], 
+    FrontEnd`SelectionMove[
+     FrontEnd`SelectedNotebook[], After, 
+     CellContents]}]& )]], "MoreAboutSection",
+ WholeCellGroupOpener->True,
+ CellID->994455030],
+
+Cell[TextData[ButtonBox["Numerical Analysis Package",
+ BaseStyle->"Link",
+ ButtonData->
+  "paclet:NumericalAnalysis/guide/NumericalAnalysisPackage"]], "MoreAbout"]
+}, Open  ]],
+
+Cell[" ", "FooterCell"]
+},
+Saveable->False,
+ScreenStyleEnvironment->"Working",
+WindowSize->{725, 750},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+WindowTitle->"NumResidue - Wolfram Mathematica",
+TaggingRules->{
+ "ModificationHighlight" -> False, "ColorType" -> "SymbolColor", "LinkTrails" -> 
+  GridBox[{{
+      RowBox[{
+        StyleBox[
+         ButtonBox[
+         "Mathematica", ButtonData -> "paclet:guide/Mathematica", 
+          BaseStyle -> {"Link", "DockedLinkTrail"}], FontSlant -> "Italic"], 
+        Cell[">", "DockedLinkTrailSeparator"]}]}}, ColumnAlignments -> Left], 
+  "Metadata" -> {
+   "built" -> "{2014, 10, 4, 20, 24, 36.8792409}", 
+    "history" -> {"1", "", "", ""}, "context" -> "NumericalAnalysis`", 
+    "keywords" -> {}, "specialkeywords" -> {}, 
+    "tutorialcollectionlinks" -> {}, "index" -> True, "label" -> 
+    "Numerical Analysis Symbol", "language" -> "en", "paclet" -> 
+    "NumericalAnalysis", "status" -> "None", "summary" -> 
+    "NumResidue[expr, {z, z_0}] numerically finds the residue of expr near \
+the point z = z_0.", "synonyms" -> {}, "title" -> "NumResidue", 
+    "titlemodifier" -> "", "windowtitle" -> "NumResidue", "type" -> "Symbol", 
+    "uri" -> "NumericalAnalysis/ref/NResidue"}, "SearchTextTranslated" -> ""},
+FrontEndVersion->"10.0 for Microsoft Windows (64-bit) (September 9, 2014)",
+StyleDefinitions->FrontEnd`FileName[{"Wolfram"}, "Reference.nb", 
+  CharacterEncoding -> "WindowsANSI"]
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{
+ "PrimaryExamplesSection"->{
+  Cell[8090, 251, 490, 14, 70, "PrimaryExamplesSection",
+   CellTags->"PrimaryExamplesSection",
+   CellID->372646633]}
+ }
+*)
+(*CellTagsIndex
+CellTagsIndex->{
+ {"PrimaryExamplesSection", 23848, 866}
+ }
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[604, 21, 3332, 75, 70, "AnchorBarGrid",
+ CellID->1],
+Cell[3939, 98, 48, 1, 70, "ObjectName",
+ CellID->19659],
+Cell[CellGroupData[{
+Cell[4012, 103, 866, 29, 70, "Usage",
+ CellID->24540],
+Cell[CellGroupData[{
+Cell[4903, 136, 609, 18, 70, "NotesSection",
+ CellGroupingRules->{"SectionGrouping", 50},
+ CellID->279144721],
+Cell[5515, 156, 237, 9, 70, "Notes",
+ CellID->29368],
+Cell[5755, 167, 437, 17, 70, "Notes",
+ CellID->10282],
+Cell[6195, 186, 415, 11, 70, "Notes",
+ CellID->1848],
+Cell[6613, 199, 333, 9, 70, "Notes",
+ CellID->20366],
+Cell[6949, 210, 357, 10, 70, "Notes",
+ CellID->23290],
+Cell[7309, 222, 290, 9, 70, "Notes",
+ CellID->3227],
+Cell[7602, 233, 439, 12, 70, "3ColumnTableMod",
+ CellID->14458]
+}, Closed]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[8090, 251, 490, 14, 70, "PrimaryExamplesSection",
+ CellTags->"PrimaryExamplesSection",
+ CellID->372646633],
+Cell[CellGroupData[{
+Cell[8605, 269, 195, 6, 70, "ExampleSection",
+ CellID->307490697],
+Cell[8803, 277, 142, 4, 70, "Input",
+ CellID->155925627],
+Cell[8948, 283, 162, 7, 70, "ExampleText",
+ CellID->7730],
+Cell[CellGroupData[{
+Cell[9135, 294, 195, 7, 70, "Input",
+ CellID->4075],
+Cell[9333, 303, 160, 5, 36, "Output",
+ CellID->127134260]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[9542, 314, 263, 8, 70, "ExampleSection",
+ CellID->26194],
+Cell[9808, 324, 142, 4, 70, "Input",
+ CellID->324530909],
+Cell[9953, 330, 210, 5, 70, "ExampleText",
+ CellID->22488],
+Cell[CellGroupData[{
+Cell[10188, 339, 283, 10, 70, "Input",
+ CellID->28664],
+Cell[10474, 351, 175, 5, 36, "Output",
+ CellID->1199702]
+}, Open  ]],
+Cell[10664, 359, 369, 13, 70, "ExampleText",
+ CellID->27048],
+Cell[CellGroupData[{
+Cell[11058, 376, 247, 9, 70, "Input",
+ CellID->25358],
+Cell[11308, 387, 344, 12, 54, "Output",
+ CellID->66374631]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[11689, 404, 121, 3, 70, "ExampleDelimiter",
+ CellID->32487],
+Cell[11813, 409, 142, 4, 70, "Input",
+ CellID->969307522],
+Cell[11958, 415, 152, 4, 70, "ExampleText",
+ CellID->19764],
+Cell[CellGroupData[{
+Cell[12135, 423, 318, 11, 70, "Input",
+ CellID->23713],
+Cell[12456, 436, 193, 6, 36, "Output",
+ CellID->243339595]
+}, Open  ]],
+Cell[12664, 445, 254, 10, 70, "ExampleText",
+ CellID->12452],
+Cell[CellGroupData[{
+Cell[12943, 459, 219, 8, 70, "Input",
+ CellID->18170],
+Cell[13165, 469, 195, 6, 36, "Output",
+ CellID->83907230]
+}, Open  ]],
+Cell[13375, 478, 244, 8, 70, "ExampleText",
+ CellID->6766],
+Cell[CellGroupData[{
+Cell[13644, 490, 281, 10, 70, "Input",
+ CellID->12704],
+Cell[13928, 502, 158, 5, 36, "Output",
+ CellID->313133000]
+}, Open  ]]
+}, Open  ]]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[14147, 514, 265, 8, 70, "ExampleSection",
+ CellID->20432],
+Cell[CellGroupData[{
+Cell[14437, 526, 283, 8, 70, "ExampleSubsection",
+ CellID->15846],
+Cell[14723, 536, 142, 4, 70, "Input",
+ CellID->782532174],
+Cell[14868, 542, 312, 9, 70, "ExampleText",
+ CellID->867371608],
+Cell[CellGroupData[{
+Cell[15205, 555, 618, 19, 70, "Input",
+ CellID->5456],
+Cell[15826, 576, 298, 7, 54, "Output",
+ CellID->539072349]
+}, Open  ]]
+}, Closed]]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[16185, 590, 270, 8, 70, "ExampleSection",
+ CellID->19714],
+Cell[16458, 600, 141, 4, 70, "Input",
+ CellID->80968281],
+Cell[16602, 606, 170, 5, 70, "ExampleText",
+ CellID->25599],
+Cell[CellGroupData[{
+Cell[16797, 615, 320, 12, 70, "Input",
+ CellID->30041],
+Cell[17120, 629, 231, 7, 36, "Output",
+ CellID->243858016]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[17388, 641, 351, 12, 70, "Input",
+ CellID->18074],
+Cell[17742, 655, 322, 10, 36, "Output",
+ CellID->12324]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[18101, 670, 121, 3, 70, "ExampleDelimiter",
+ CellID->10344],
+Cell[18225, 675, 141, 4, 70, "Input",
+ CellID->13713554],
+Cell[18369, 681, 71, 1, 70, "ExampleText",
+ CellID->29863],
+Cell[18443, 684, 458, 16, 70, "Input",
+ CellID->13749],
+Cell[CellGroupData[{
+Cell[18926, 704, 234, 8, 70, "Input",
+ CellID->29276],
+Cell[19163, 714, 173, 5, 36, "Output",
+ CellID->10597]
+}, Open  ]]
+}, Open  ]]
+}, Closed]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[19409, 727, 441, 13, 70, "SeeAlsoSection",
+ CellID->25434],
+Cell[19853, 742, 1091, 38, 70, "SeeAlso",
+ CellID->1770]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[20981, 785, 444, 13, 70, "TutorialsSection",
+ CellID->32071],
+Cell[21428, 800, 175, 4, 70, "Tutorials",
+ CellID->30106]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[21640, 809, 449, 13, 70, "MoreAboutSection",
+ CellID->994455030],
+Cell[22092, 824, 163, 3, 70, "MoreAbout"]
+}, Open  ]],
+Cell[22270, 830, 23, 0, 70, "FooterCell"]
+}
+]
+*)
+
+(* End of internal cache information *)
+

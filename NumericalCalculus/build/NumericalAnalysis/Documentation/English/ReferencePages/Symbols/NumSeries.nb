@@ -1,0 +1,1775 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     54491,       1765]
+NotebookOptionsPosition[     46841,       1499]
+NotebookOutlinePosition[     48695,       1546]
+CellTagsIndexPosition[     48609,       1541]
+WindowTitle->NumSeries - Wolfram Mathematica
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[GridBox[{
+   {Cell["NUMERICAL ANALYSIS SYMBOL", "PacletNameCell"], Cell[TextData[{
+     Cell[BoxData[
+      ActionMenuBox[
+       FrameBox["\<\"Tutorials \[RightGuillemet]\"\>",
+        StripOnInput->False], {"\<\"Numerical Analysis Package\"\>":>
+       Documentation`HelpLookup[
+       "paclet:NumericalAnalysis/tutorial/NumericalAnalysis"]},
+       Appearance->None,
+       MenuAppearance->Automatic]],
+      LineSpacing->{1.4, 0}],
+     "\[ThickSpace]\[ThickSpace]\[ThickSpace]\[ThickSpace]\[ThickSpace]\
+\[ThickSpace]",
+     Cell[BoxData[
+      ActionMenuBox[
+       FrameBox["\<\"See Also \[RightGuillemet]\"\>",
+        StripOnInput->False], {"\<\"NumLimit\"\>":>Documentation`HelpLookup[
+       "paclet:NumericalAnalysis/ref/NumLimit"], "\<\"NumResidue\"\>":>
+       Documentation`HelpLookup[
+       "paclet:NumericalAnalysis/ref/NumResidue"], "\<\"Series\"\>":>
+       Documentation`HelpLookup["paclet:ref/Series"], "\<\"NSum\"\>":>
+       Documentation`HelpLookup["paclet:ref/NSum"]},
+       Appearance->None,
+       MenuAppearance->Automatic]],
+      LineSpacing->{1.4, 0}],
+     "\[ThickSpace]\[ThickSpace]\[ThickSpace]\[ThickSpace]\[ThickSpace]\
+\[ThickSpace]",
+     Cell[BoxData[
+      ActionMenuBox[
+       FrameBox["\<\"More About \[RightGuillemet]\"\>",
+        StripOnInput->False], {"\<\"Numerical Analysis Package\"\>":>
+       Documentation`HelpLookup[
+       "paclet:NumericalAnalysis/guide/NumericalAnalysisPackage"]},
+       Appearance->None,
+       MenuAppearance->Automatic]],
+      LineSpacing->{1.4, 0}],
+     "\[ThickSpace]\[ThickSpace]\[ThickSpace]\[ThickSpace]\[ThickSpace]\
+\[ThickSpace]",
+     Cell[BoxData[
+      ActionMenuBox[
+       FrameBox["\<\"URL \[RightGuillemet]\"\>",
+        StripOnInput->False], {"\<\"NumericalAnalysis/ref/NSeries\"\>":>
+       None, "\<\"Copy Mathematica url\"\>":>
+       Module[{DocumentationSearch`Private`nb$}, 
+        DocumentationSearch`Private`nb$ = NotebookPut[
+           Notebook[{
+             Cell["NumericalAnalysis/ref/NSeries"]}, Visible -> False]]; 
+        SelectionMove[DocumentationSearch`Private`nb$, All, Notebook]; 
+        FrontEndTokenExecute[DocumentationSearch`Private`nb$, "Copy"]; 
+        NotebookClose[DocumentationSearch`Private`nb$]; Null], 
+       Delimiter, "\<\"Copy web url\"\>":>
+       Module[{DocumentationSearch`Private`nb$}, 
+        DocumentationSearch`Private`nb$ = NotebookPut[
+           Notebook[{
+             Cell[
+              BoxData[
+               MakeBoxes[
+                Hyperlink[
+                "http://reference.wolfram.com/mathematica/NumericalAnalysis/\
+ref/NSeries.html"], StandardForm]], "Input", TextClipboardType -> 
+              "PlainText"]}, Visible -> False]]; 
+        SelectionMove[DocumentationSearch`Private`nb$, All, Notebook]; 
+        FrontEndTokenExecute[DocumentationSearch`Private`nb$, "Copy"]; 
+        NotebookClose[DocumentationSearch`Private`nb$]; 
+        Null], "\<\"Go to web url\"\>":>FrontEndExecute[{
+         NotebookLocate[{
+           URL[
+            StringJoin[
+            "http://reference.wolfram.com/mathematica/", 
+             "NumericalAnalysis/ref/NSeries", ".html"]], None}]}]},
+       Appearance->None,
+       MenuAppearance->Automatic]],
+      LineSpacing->{1.4, 0}]
+    }], "AnchorBar"]}
+  }]], "AnchorBarGrid",
+ CellID->1],
+
+Cell["NumSeries", "ObjectName",
+ CellID->18563],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[GridBox[{
+   {"", Cell[TextData[{
+     Cell[BoxData[
+      RowBox[{"NumSeries", "[", 
+       RowBox[{
+        StyleBox["f", "TI"], ",", 
+        RowBox[{"{", 
+         RowBox[{
+          StyleBox["x", "TI"], ",", 
+          SubscriptBox[
+           StyleBox["x", "TI"], 
+           StyleBox["0", "TR"]], ",", 
+          StyleBox["n", "TI"]}], "}"}]}], "]"}]], "InlineFormula"],
+     " \[LineSeparator]",
+     "gives a numerical approximation to the series expansion of ",
+     Cell[BoxData[
+      StyleBox["f", "TI"]], "InlineFormula"],
+     " about the point ",
+     Cell[BoxData[
+      RowBox[{
+       StyleBox["x", "TI"], "=", 
+       SubscriptBox[
+        StyleBox["x", "TI"], 
+        StyleBox["0", "TR"]]}]], "InlineFormula"],
+     " including the terms ",
+     Cell[BoxData[
+      SuperscriptBox[
+       RowBox[{"(", 
+        RowBox[{
+         StyleBox["x", "TI"], "-", 
+         SubscriptBox[
+          StyleBox["x", "TI"], 
+          StyleBox["0", "TR"]]}], ")"}], 
+       RowBox[{"-", 
+        StyleBox["n", "TI"]}]]], "InlineFormula"],
+     " through ",
+     Cell[BoxData[
+      SuperscriptBox[
+       RowBox[{"(", 
+        RowBox[{
+         StyleBox["x", "TI"], "-", 
+         SubscriptBox[
+          StyleBox["x", "TI"], 
+          StyleBox["0", "TR"]]}], ")"}], 
+       StyleBox["n", "TI"]]], "InlineFormula"],
+     "."
+    }]]}
+  }]], "Usage",
+ GridBoxOptions->{
+ GridBoxBackground->{
+  "Columns" -> {{None}}, "ColumnsIndexed" -> {}, "Rows" -> {{None}}, 
+   "RowsIndexed" -> {}}},
+ CellID->9125],
+
+Cell[CellGroupData[{
+
+Cell[TextData[Cell[BoxData[
+ ButtonBox[
+  FrameBox[
+   StyleBox[
+    RowBox[{"MORE", " ", "INFORMATION"}], "NotesFrameText"],
+   StripOnInput->False],
+  Appearance->{Automatic, None},
+  BaseStyle->None,
+  ButtonFunction:>(FrontEndExecute[{
+     FrontEnd`SelectionMove[
+      FrontEnd`SelectedNotebook[], All, ButtonCell], 
+     FrontEndToken["OpenCloseGroup"], 
+     FrontEnd`SelectionMove[
+      FrontEnd`SelectedNotebook[], After, CellContents]}]& ),
+  Evaluator->None,
+  Method->"Preemptive"]]]], "NotesSection",
+ WholeCellGroupOpener->True,
+ CellGroupingRules->{"SectionGrouping", 50},
+ CellID->44765598],
+
+Cell[TextData[{
+ "The function ",
+ Cell[BoxData[
+  StyleBox["f", "TI"]], "InlineFormula"],
+ " must be numeric when its argument ",
+ Cell[BoxData[
+  StyleBox["x", "TI"]], "InlineFormula"],
+ " is numeric."
+}], "Notes",
+ CellID->7007],
+
+Cell[TextData[{
+ Cell[BoxData["NumSeries"], "InlineFormula"],
+ " will construct standard univariate Taylor or Laurent series."
+}], "Notes",
+ CellID->18370],
+
+Cell[TextData[{
+ Cell[BoxData["NumSeries"], "InlineFormula"],
+ " samples ",
+ Cell[BoxData[
+  StyleBox["f", "TI"]], "InlineFormula"],
+ " at points on a circle in the complex plane centered at ",
+ Cell[BoxData[
+  SubscriptBox[
+   StyleBox["x", "TI"], 
+   StyleBox["0", "TR"]]], "InlineFormula"],
+ " and uses ",
+ Cell[BoxData[
+  ButtonBox["InverseFourier",
+   BaseStyle->"Link",
+   ButtonData->"paclet:ref/InverseFourier"]], "InlineFormula"],
+ "."
+}], "Notes",
+ CellID->15121],
+
+Cell[TextData[{
+ "The region of convergence will be the annulus (containing the sampled \
+points) where ",
+ Cell[BoxData[
+  StyleBox["f", "TI"]], "InlineFormula"],
+ " is analytic."
+}], "Notes",
+ CellID->7727],
+
+Cell[TextData[{
+ Cell[BoxData["NumSeries"], "InlineFormula"],
+ " will not return a correct result if the disk centered at ",
+ Cell[BoxData[
+  SubscriptBox[
+   StyleBox["x", "TI"], 
+   StyleBox["0", "TR"]]], "InlineFormula"],
+ " contains a branch cut of ",
+ Cell[BoxData[
+  StyleBox["f", "TI"]], "InlineFormula"],
+ "."
+}], "Notes",
+ CellID->2658],
+
+Cell[TextData[{
+ "The result of ",
+ Cell[BoxData["NumSeries"], "InlineFormula"],
+ " is a ",
+ Cell[BoxData[
+  ButtonBox["SeriesData",
+   BaseStyle->"Link",
+   ButtonData->"paclet:ref/SeriesData"]], "InlineFormula"],
+ " object."
+}], "Notes",
+ CellID->24336],
+
+Cell[TextData[{
+ "If the result of ",
+ Cell[BoxData["NumSeries"], "InlineFormula"],
+ " is a Laurent series, than the ",
+ Cell[BoxData[
+  ButtonBox["SeriesData",
+   BaseStyle->"Link",
+   ButtonData->"paclet:ref/SeriesData"]], "InlineFormula"],
+ " object is not a correct representation of the series, as higher-order \
+poles are neglected."
+}], "Notes",
+ CellID->18275],
+
+Cell["\<\
+No effort is made to justify the precision in each of the coefficients of the \
+series.\
+\>", "Notes",
+ CellID->1221],
+
+Cell[TextData[{
+ Cell[BoxData["NumSeries"], "InlineFormula"],
+ " is unable to recognize small numbers that should in fact be zero. ",
+ Cell[BoxData[
+  ButtonBox["Chop",
+   BaseStyle->"Link",
+   ButtonData->"paclet:ref/Chop"]], "InlineFormula"],
+ " is often needed to eliminate these spurious residuals."
+}], "Notes",
+ CellID->11576],
+
+Cell[TextData[{
+ "The number of sample points chosen is ",
+ Cell[BoxData[
+  SuperscriptBox[
+   StyleBox["2", "TR"], 
+   RowBox[{
+    StyleBox["2", "TR"], "+", 
+    RowBox[{"\[LeftCeiling]", 
+     RowBox[{
+      SubscriptBox[
+       StyleBox["log", "TI"], 
+       StyleBox["2", "TR"]], "[", 
+      StyleBox["n", "TI"], "]"}], "\[RightCeiling]"}]}]]], "InlineFormula"],
+ "."
+}], "Notes",
+ CellID->1799],
+
+Cell["The following options can be given: ", "Notes",
+ CellID->24919],
+
+Cell[BoxData[GridBox[{
+   {Cell["      ", "TableRowIcon"], 
+    ButtonBox["WorkingPrecision",
+     BaseStyle->"Link",
+     ButtonData->"paclet:ref/WorkingPrecision"], 
+    ButtonBox["MachinePrecision",
+     BaseStyle->"Link",
+     ButtonData->"paclet:ref/MachinePrecision"], Cell[
+    "precision used in internal computations", "TableText"]}
+  }]], "3ColumnTableMod",
+ GridBoxOptions->{
+ GridBoxBackground->{
+  "Columns" -> {{None}}, "ColumnsIndexed" -> {}, "Rows" -> {{None}}, 
+   "RowsIndexed" -> {}},
+ GridBoxDividers->{"Rows" -> {{True, True}}}},
+ CellID->14241]
+}, Closed]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[ButtonBox["EXAMPLES",
+ BaseStyle->None,
+ Appearance->{Automatic, None},
+ Evaluator->None,
+ Method->"Preemptive",
+ ButtonFunction:>(FrontEndExecute[{
+    FrontEnd`SelectionMove[
+     FrontEnd`SelectedNotebook[], All, ButtonCell], 
+    FrontEndToken["OpenCloseGroup"], 
+    FrontEnd`SelectionMove[
+     FrontEnd`SelectedNotebook[], After, 
+     CellContents]}]& )]], "PrimaryExamplesSection",
+ WholeCellGroupOpener->True,
+ CellTags->"PrimaryExamplesSection",
+ CellID->236904427],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ "Basic Examples",
+ "\[NonBreakingSpace]\[NonBreakingSpace]",
+ Cell["(1)", "ExampleCount"]
+}], "ExampleSection", "ExampleSection",
+ WholeCellGroupOpener->True,
+ CellID->82172094],
+
+Cell[BoxData[
+ RowBox[{"Needs", "[", "\"\<NumericalAnalysis`\>\"", "]"}]], "Input", \
+"Deemphasis",
+ CellLabel->"In[1]:=",
+ CellID->286133229],
+
+Cell[TextData[{
+ "This is a power series for the exponential function around ",
+ Cell[BoxData[
+  RowBox[{
+   StyleBox["x", "TI"], "=", "0"}]], "InlineFormula"],
+ ":"
+}], "ExampleText",
+ CellID->31032],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"NumSeries", "[", 
+  RowBox[{
+   RowBox[{"Exp", "[", "x", "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", "0", ",", "5"}], "}"}]}], "]"}]], "Input",
+ CellLabel->"In[2]:=",
+ CellID->24988],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{
+   RowBox[{"-", 
+    FractionBox[
+     RowBox[{"5.3776427755281014`*^-17", "+", 
+      RowBox[{"9.486236828617798`*^-18", " ", "\[ImaginaryI]"}]}], 
+     SuperscriptBox["x", "5"]]}], "-", 
+   FractionBox[
+    RowBox[{"4.250072516143177`*^-17", "-", 
+     RowBox[{"4.8773293897746294`*^-18", " ", "\[ImaginaryI]"}]}], 
+    SuperscriptBox["x", "4"]], "-", 
+   FractionBox[
+    RowBox[{"1.0771548583643484`*^-16", "-", 
+     RowBox[{"5.340168199866056`*^-17", " ", "\[ImaginaryI]"}]}], 
+    SuperscriptBox["x", "3"]], "-", 
+   FractionBox[
+    RowBox[{"1.095586295296602`*^-16", "+", 
+     RowBox[{"4.03339012028709`*^-17", " ", "\[ImaginaryI]"}]}], 
+    SuperscriptBox["x", "2"]], "-", 
+   FractionBox[
+    RowBox[{"2.7841972976248846`*^-17", "+", 
+     RowBox[{"3.369911831316417`*^-17", " ", "\[ImaginaryI]"}]}], "x"], "+", 
+   RowBox[{"(", 
+    RowBox[{"0.9999999999999998`", "\[InvisibleSpace]", "-", 
+     RowBox[{"1.2469905369993441`*^-17", " ", "\[ImaginaryI]"}]}], ")"}], "+", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{"0.9999999999999997`", "\[InvisibleSpace]", "-", 
+      RowBox[{"1.2452218374088935`*^-16", " ", "\[ImaginaryI]"}]}], ")"}], 
+    " ", "x"}], "+", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{"0.4999999999999999`", "\[InvisibleSpace]", "-", 
+      RowBox[{"1.4430888954423076`*^-16", " ", "\[ImaginaryI]"}]}], ")"}], 
+    " ", 
+    SuperscriptBox["x", "2"]}], "+", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{"0.16666666666666669`", "\[InvisibleSpace]", "-", 
+      RowBox[{"8.060989934366687`*^-17", " ", "\[ImaginaryI]"}]}], ")"}], " ", 
+    SuperscriptBox["x", "3"]}], "+", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{"0.041666666666666685`", "\[InvisibleSpace]", "-", 
+      RowBox[{"5.150118357947159`*^-17", " ", "\[ImaginaryI]"}]}], ")"}], " ", 
+    SuperscriptBox["x", "4"]}], "+", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{"0.008333333333333403`", "\[InvisibleSpace]", "-", 
+      RowBox[{"9.052615639879013`*^-17", " ", "\[ImaginaryI]"}]}], ")"}], " ", 
+    SuperscriptBox["x", "5"]}], "+", 
+   InterpretationBox[
+    SuperscriptBox[
+     RowBox[{"O", "[", "x", "]"}], "6"],
+    SeriesData[$CellContext`x, 0, {}, -5, 6, 1],
+    Editable->False]}],
+  SeriesData[$CellContext`x, 0, {
+    Complex[-5.3776427755281014`*^-17, -9.486236828617798*^-18], 
+    Complex[-4.250072516143177*^-17, 4.8773293897746294`*^-18], 
+    Complex[-1.0771548583643484`*^-16, 5.340168199866056*^-17], 
+    Complex[-1.095586295296602*^-16, -4.03339012028709*^-17], 
+    Complex[-2.7841972976248846`*^-17, -3.369911831316417*^-17], 
+    Complex[0.9999999999999998, -1.2469905369993441`*^-17], 
+    Complex[0.9999999999999997, -1.2452218374088935`*^-16], 
+    Complex[0.4999999999999999, -1.4430888954423076`*^-16], 
+    Complex[0.16666666666666669`, -8.060989934366687*^-17], 
+    Complex[0.041666666666666685`, -5.150118357947159*^-17], 
+    Complex[0.008333333333333403, -9.052615639879013*^-17]}, -5, 6, 1],
+  Editable->False]], "Output",
+ ImageSize->{534, 143},
+ ImageMargins->{{0, 0}, {0, 0}},
+ ImageRegion->{{0, 1}, {0, 1}},
+ CellLabel->"Out[2]=",
+ CellID->105763776]
+}, Open  ]],
+
+Cell[TextData[{
+ Cell[BoxData[
+  ButtonBox["Chop",
+   BaseStyle->"Link",
+   ButtonData->"paclet:ref/Chop"]], "InlineFormula"],
+ " is needed to eliminate spurious residuals:"
+}], "ExampleText",
+ CellFrameLabels->{{None, None}, {None, None}},
+ CellID->23705],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"%", "//", "Chop"}]], "Input",
+ CellLabel->"In[3]:=",
+ CellID->14670],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"0.9999999999999998`", "+", "x", "+", 
+   RowBox[{"0.4999999999999999`", " ", 
+    SuperscriptBox["x", "2"]}], "+", 
+   RowBox[{"0.16666666666666669`", " ", 
+    SuperscriptBox["x", "3"]}], "+", 
+   RowBox[{"0.041666666666666685`", " ", 
+    SuperscriptBox["x", "4"]}], "+", 
+   RowBox[{"0.008333333333333403`", " ", 
+    SuperscriptBox["x", "5"]}], "+", 
+   InterpretationBox[
+    SuperscriptBox[
+     RowBox[{"O", "[", "x", "]"}], "6"],
+    SeriesData[$CellContext`x, 0, {}, 0, 6, 1],
+    Editable->False]}],
+  SeriesData[$CellContext`x, 0, {0.9999999999999998, 0.9999999999999997, 
+   0.4999999999999999, 0.16666666666666669`, 0.041666666666666685`, 
+   0.008333333333333403}, 0, 6, 1],
+  Editable->False]], "Output",
+ ImageSize->{411, 15},
+ ImageMargins->{{0, 0}, {0, 0}},
+ ImageRegion->{{0, 1}, {0, 1}},
+ CellLabel->"Out[3]=",
+ CellID->98237564]
+}, Open  ]],
+
+Cell["\<\
+Using extended precision may also eliminate spurious imaginaries:\
+\>", "ExampleText",
+ CellID->9868],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"NumSeries", "[", 
+  RowBox[{
+   RowBox[{"Exp", "[", "x", "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", "0", ",", "5"}], "}"}], ",", 
+   RowBox[{"WorkingPrecision", "->", "17"}]}], "]"}]], "Input",
+ CellLabel->"In[4]:=",
+ CellID->28391],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"0.99999999999999999999997093657`15.485091979429162", "+", "x", "+", 
+   RowBox[{"0.49999999999999999999997093616`15.147250934590646", " ", 
+    SuperscriptBox["x", "2"]}], "+", 
+   RowBox[{"0.16666666666666666666663760271`14.714516794565183", " ", 
+    SuperscriptBox["x", "3"]}], "+", 
+   RowBox[{"0.04166666666666666666663760271`14.174417404218568", " ", 
+    SuperscriptBox["x", "4"]}], "+", 
+   RowBox[{"0.00833333333333333333330426941`13.47623616061369", " ", 
+    SuperscriptBox["x", "5"]}], "+", 
+   InterpretationBox[
+    SuperscriptBox[
+     RowBox[{"O", "[", "x", "]"}], "6"],
+    SeriesData[$CellContext`x, 0, {}, 0, 6, 1],
+    Editable->False]}],
+  SeriesData[$CellContext`x, 0, {
+   1.`15.485091979429162, 1.`15.493957857689693, 0.5`15.147250934590646, 
+    0.1666666666666667`14.714516794565183, 
+    0.0416666666666667`14.174417404218568, 
+    0.0083333333333333`13.47623616061369}, 0, 6, 1],
+  Editable->False]], "Output",
+ ImageSize->{490, 33},
+ ImageMargins->{{0, 0}, {0, 0}},
+ ImageRegion->{{0, 1}, {0, 1}},
+ CellLabel->"Out[4]=",
+ CellID->229173192]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ InterpretationBox[Cell[TextData[{
+   "Scope",
+   "\[NonBreakingSpace]\[NonBreakingSpace]",
+   Cell["(2)", "ExampleCount"]
+  }], "ExampleSection"],
+  $Line = 0; Null]], "ExampleSection", "ExampleSection",
+ WholeCellGroupOpener->True,
+ CellID->5537],
+
+Cell[BoxData[
+ RowBox[{"Needs", "[", "\"\<NumericalAnalysis`\>\"", "]"}]], "Input", \
+"Deemphasis",
+ CellLabel->"In[1]:=",
+ CellID->51004330],
+
+Cell["Find expansions in the complex plane:", "ExampleText",
+ CellID->26320],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"NumSeries", "[", 
+   RowBox[{
+    RowBox[{"Exp", "[", "x", "]"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"x", ",", "I", ",", "5"}], "}"}]}], "]"}], "//", 
+  "Chop"}]], "Input",
+ CellLabel->"In[2]:=",
+ CellID->13124],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{
+   RowBox[{"(", 
+    RowBox[{"0.5403023058681397`", "\[InvisibleSpace]", "+", 
+     RowBox[{"0.8414709848078964`", " ", "\[ImaginaryI]"}]}], ")"}], "+", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{"0.5403023058681397`", "\[InvisibleSpace]", "+", 
+      RowBox[{"0.8414709848078963`", " ", "\[ImaginaryI]"}]}], ")"}], " ", 
+    RowBox[{"(", 
+     RowBox[{"x", "-", "\[ImaginaryI]"}], ")"}]}], "+", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{"0.27015115293406994`", "\[InvisibleSpace]", "+", 
+      RowBox[{"0.42073549240394803`", " ", "\[ImaginaryI]"}]}], ")"}], " ", 
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{"x", "-", "\[ImaginaryI]"}], ")"}], "2"]}], "+", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{"0.09005038431135672`", "\[InvisibleSpace]", "+", 
+      RowBox[{"0.1402451641346494`", " ", "\[ImaginaryI]"}]}], ")"}], " ", 
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{"x", "-", "\[ImaginaryI]"}], ")"}], "3"]}], "+", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{"0.022512596077839238`", "\[InvisibleSpace]", "+", 
+      RowBox[{"0.035061291033662324`", " ", "\[ImaginaryI]"}]}], ")"}], " ", 
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{"x", "-", "\[ImaginaryI]"}], ")"}], "4"]}], "+", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{"0.004502519215567979`", "\[InvisibleSpace]", "+", 
+      RowBox[{"0.007012258206732519`", " ", "\[ImaginaryI]"}]}], ")"}], " ", 
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{"x", "-", "\[ImaginaryI]"}], ")"}], "5"]}], "+", 
+   InterpretationBox[
+    SuperscriptBox[
+     RowBox[{"O", "[", 
+      RowBox[{"x", "-", "\[ImaginaryI]"}], "]"}], "6"],
+    SeriesData[$CellContext`x, 
+     Complex[0, 1], {}, 0, 6, 1],
+    Editable->False]}],
+  SeriesData[$CellContext`x, 
+   Complex[0, 1], {
+    Complex[0.5403023058681397, 0.8414709848078964], 
+    Complex[0.5403023058681397, 0.8414709848078963], 
+    Complex[0.27015115293406994`, 0.42073549240394803`], 
+    Complex[0.09005038431135672, 0.1402451641346494], 
+    Complex[0.022512596077839238`, 0.035061291033662324`], 
+    Complex[0.004502519215567979, 0.007012258206732519]}, 0, 6, 1],
+  Editable->False]], "Output",
+ ImageSize->{526, 50},
+ ImageMargins->{{0, 0}, {0, 0}},
+ ImageRegion->{{0, 1}, {0, 1}},
+ CellLabel->"Out[2]=",
+ CellID->468945209]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ InterpretationBox[Cell["\t", "ExampleDelimiter"],
+  $Line = 0; Null]], "ExampleDelimiter",
+ CellID->9354],
+
+Cell[BoxData[
+ RowBox[{"Needs", "[", "\"\<NumericalAnalysis`\>\"", "]"}]], "Input", \
+"Deemphasis",
+ CellLabel->"In[1]:=",
+ CellID->121312570],
+
+Cell["Find Laurent expansions about essential singularities:", "ExampleText",
+ CellID->28703],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"NumSeries", "[", 
+   RowBox[{
+    RowBox[{"Sin", "[", 
+     RowBox[{"x", "+", 
+      RowBox[{"1", "/", "x"}]}], "]"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"x", ",", "0", ",", "10"}], "}"}]}], "]"}], "//", 
+  "Chop"}]], "Input",
+ CellLabel->"In[2]:=",
+ CellID->5494],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{
+   FractionBox["2.49234343512994`*^-6", 
+    SuperscriptBox["x", "9"]], "-", 
+   FractionBox["0.00017494407486828503`", 
+    SuperscriptBox["x", "7"]], "+", 
+   FractionBox["0.007039629755871695`", 
+    SuperscriptBox["x", "5"]], "-", 
+   FractionBox["0.12894324947440206`", 
+    SuperscriptBox["x", "3"]], "+", 
+   FractionBox["0.5767248077568734`", "x"], "+", 
+   RowBox[{"0.5767248077568734`", " ", "x"}], "-", 
+   RowBox[{"0.12894324947440206`", " ", 
+    SuperscriptBox["x", "3"]}], "+", 
+   RowBox[{"0.007039629755871695`", " ", 
+    SuperscriptBox["x", "5"]}], "-", 
+   RowBox[{"0.00017494407486828503`", " ", 
+    SuperscriptBox["x", "7"]}], "+", 
+   RowBox[{"2.49234343512994`*^-6", " ", 
+    SuperscriptBox["x", "9"]}], "+", 
+   InterpretationBox[
+    SuperscriptBox[
+     RowBox[{"O", "[", "x", "]"}], "11"],
+    SeriesData[$CellContext`x, 0, {}, -9, 11, 1],
+    Editable->False]}],
+  SeriesData[$CellContext`x, 0, {
+   2.49234343512994*^-6, 0, -0.00017494407486828503`, 0, 0.007039629755871695,
+     0, -0.12894324947440206`, 0, 0.5767248077568734, 0, 0.5767248077568734, 
+    0, -0.12894324947440206`, 0, 0.007039629755871695, 
+    0, -0.00017494407486828503`, 0, 2.49234343512994*^-6}, -9, 11, 1],
+  Editable->False]], "Output",
+ ImageSize->{510, 52},
+ ImageMargins->{{0, 0}, {0, 0}},
+ ImageRegion->{{0, 1}, {0, 1}},
+ CellLabel->"Out[2]=",
+ CellID->12386883]
+}, Open  ]],
+
+Cell[TextData[{
+ Cell[BoxData[
+  ButtonBox["Series",
+   BaseStyle->"Link",
+   ButtonData->"paclet:ref/Series"]], "InlineFormula"],
+ " will not find Laurent expansions about essential singularities:"
+}], "ExampleText",
+ CellID->23865],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Series", "[", 
+  RowBox[{
+   RowBox[{"Sin", "[", 
+    RowBox[{"x", "+", 
+     RowBox[{"1", "/", "x"}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", "0", ",", "10"}], "}"}]}], "]"}]], "Input",
+ CellLabel->"In[3]:=",
+ CellID->17554],
+
+Cell[BoxData[
+ RowBox[{"Sin", "[", 
+  RowBox[{
+   FractionBox["1", "x"], "+", "x"}], "]"}]], "Output",
+ ImageSize->{71, 32},
+ ImageMargins->{{0, 0}, {0, 0}},
+ ImageRegion->{{0, 1}, {0, 1}},
+ CellLabel->"Out[3]=",
+ CellID->210377578]
+}, Open  ]]
+}, Open  ]]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ InterpretationBox[Cell[TextData[{
+   "Applications",
+   "\[NonBreakingSpace]\[NonBreakingSpace]",
+   Cell["(1)", "ExampleCount"]
+  }], "ExampleSection"],
+  $Line = 0; Null]], "ExampleSection", "ExampleSection",
+ WholeCellGroupOpener->True,
+ CellID->15098],
+
+Cell[BoxData[
+ RowBox[{"Needs", "[", "\"\<NumericalAnalysis`\>\"", "]"}]], "Input", \
+"Deemphasis",
+ CellLabel->"In[1]:=",
+ CellID->278312198],
+
+Cell["A function defined only for numerical input:", "ExampleText",
+ CellID->9858],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"f", "[", 
+   RowBox[{"a_", "?", "NumericQ"}], "]"}], ":=", 
+  RowBox[{"NIntegrate", "[", 
+   RowBox[{
+    RowBox[{"Sin", "[", 
+     RowBox[{
+      RowBox[{"a", " ", 
+       RowBox[{"Sin", "[", "x", "]"}]}], "+", 
+      RowBox[{"Cos", "[", "x", "]"}]}], "]"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"x", ",", "0", ",", "a"}], "}"}]}], "]"}]}]], "Input",
+ CellLabel->"In[2]:=",
+ CellID->1730],
+
+Cell[TextData[{
+ "Find a series expansion of ",
+ Cell[BoxData[
+  StyleBox["f", "TI"]], "InlineFormula"],
+ ":"
+}], "ExampleText",
+ CellID->8553],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"g", "[", "a_", "]"}], "=", 
+  RowBox[{
+   RowBox[{"Normal", "@", 
+    RowBox[{"NumSeries", "[", 
+     RowBox[{
+      RowBox[{"f", "[", "a", "]"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"a", ",", "0", ",", "10"}], "}"}]}], "]"}]}], "//", 
+   "Chop"}]}]], "Input",
+ CellLabel->"In[3]:=",
+ CellID->29551],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"0.8414709848078974`", " ", "a"}], "+", 
+  RowBox[{"0.18010076862271346`", " ", 
+   SuperscriptBox["a", "3"]}], "-", 
+  RowBox[{"0.07410814251613114`", " ", 
+   SuperscriptBox["a", "5"]}], "+", 
+  RowBox[{"0.008520246025506814`", " ", 
+   SuperscriptBox["a", "7"]}], "+", 
+  RowBox[{"0.0013412926733622921`", " ", 
+   SuperscriptBox["a", "9"]}]}]], "Output",
+ ImageSize->{445, 15},
+ ImageMargins->{{0, 0}, {0, 0}},
+ ImageRegion->{{0, 1}, {0, 1}},
+ CellLabel->"Out[3]=",
+ CellID->147176576]
+}, Open  ]],
+
+Cell["Check:", "ExampleText",
+ CellID->444],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Plot", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"f", "[", "a", "]"}], ",", 
+     RowBox[{"g", "[", "a", "]"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"a", ",", "0", ",", "2"}], "}"}]}], "]"}]], "Input",
+ CellLabel->"In[4]:=",
+ CellID->21649],
+
+Cell[BoxData[
+ GraphicsBox[{{}, {}, 
+   {Hue[0.67, 0.6, 0.6], LineBox[CompressedData["
+1:eJwVzX08FHYABnBEks+8v3RnMnKtRbFWlLaemt6maElFncuoLpTJLpXVOIsK
+V9bMFKcTy9R5i7JIwmEzIxS9cMd1mXPkvBydO26//fF8ns/3+eexD/7W94iO
+lpaWD8n/7XVksP2J9MiGpmDn1pORwRt0PamRIspmeEQnMahDG/HZzYysMoof
+jmetqVNIv8aOf7rvcSmH0eKvDpFIg7D/8HT1NQoLvn7ZLJE0Er0uFz05lAt4
+tL9SJZPGgWe5KzGJkganX0TuK4dSwV5Q9vFlSh6cEpuMIePBPyCnWD5WDi3z
+KIvA26Uw1LDp2xbXgPbWjhO9uRK03e8G65MF2DLSVmsVXIvTreuQMfkX8o+F
+JWbpN8K63FSord0Gjw9+7OAea8YDsWdL2+cdaLhCW/PNmjbUhXFtAoafYbt0
+UUfXbDsUS78wLjzRjar4SUsBnkFHedfEhvYK2Y2mo4VVXXDTBD3YU9SDrS0T
+FbFWL9FyYXVr43IR6B7alUERr2GXKlMWvOsDO7cg5NQ8IWTTIuFzVzHO95kc
+VHr0IW+oqtnoyhtwW7iZlT/3w8g2f1QikcC/68M/dsnESAm9f5TnOIDXYexL
+i10lmNp4V3Is9l8wrN2Z/WlvwVolKLeqH0Szm6dlxdsBiIoEye32Q8gbf3iR
+uW8QqrBnmZ/EyJC+tyHuar0UTpv0545WDaP9uw2fnqPKsO2WPbPU+h1sDvks
+NE8dxmnbQw799FHwD94w6RsZgfPwXsNubznGN/k8MNoyCnNj+QLBjByuy5cV
+hNPl0K3JLF6SNYb4UdtTngZjCF9d9dJgxzg+onBrTtWP4e5XwbzHU+PgFHuV
+5J8Zh0JGNRlIn8BFRha3w24C9/dsm5e2eRImNErVnY4JxG5PuFk+MIn2woyi
+kehJ2Pd6vchNUMCA1km1sFTAw/1CGmXVFEqZ+gMW1QrQF7cptTunUF6YK6Hu
+m4KimSOOZE/D6fCoLHV6Chm6DJav43vkRVydL7w8DXPh/Vs6gvfQ0jxc/sLi
+PfTOs/3WnVSis7rsJ7/bZC9gFIvNZpD0cjhBvkyJqBvFHLO6GfT7pp++XqJE
+tdOlBaYRKpxb2qTHc5mBqVeUc7yRGjG8GE0kbwY9K552nn2khtWKBGOmhQol
+2XCUMGbRxArxuByjQmCxm6nt3CwMKhwO/PlChbiEHHbPnTnwG3k3dq5Vo3DQ
+NtNopwYa9vXvJ5PU2G1qtLZpRgP59XZv7141kvR0bHqIc1QBJfuIBUrFrJz4
++VyDWRCxm7i3nqrS4IB0e3cUMbWscFcEcdeOGUYGsdjPm2mp1qBmpWHoG2JW
+Rkp6yKwGj/kS5lkh+U+JO3uGuNegvzGeeCCORecQW+jV0lKI/UPpDhXE9OdO
+b7KJv/BwLlo4p8HeV3y6gHh+z98NpcTDgXQvY5EaeFrzeyPxvavX8hcRnxGU
+Jb8m7grk6zoQD/Ezd+tpNOhuTXq8mrj1fHivP3Gx1oTrAWL9qENPThD/YLaV
+E0K88eie3Hjijppz0uPE93zWh/KJucNpObHEsi9ddtYSC8OjZy8RO7ovceki
+dktcH3CNmOFkbSYjTlkvKc8k/tXOUKEhrkuONPmN+D+gSZoY
+     "]]}, 
+   {Hue[0.9060679774997897, 0.6, 0.6], LineBox[CompressedData["
+1:eJwVyHk41HkAx/GhsWy149rYITyE1lEiIdHnp/GslsoWlR6MTFFqs5NVaZ8O
+5IiafXq6zC4itVtyTDmqdZRjYjd3iQ5HJk3MWIYMhmH2u398nvfz+phzftoR
+oU6j0baR/V/fiKGOmuGIjY0c+9ajXM5GOsuI28/0hvvxdLaRhMLaHH5WKTMQ
+P2atq5MP/wC/lu6SbOZ+NAcp9w0O78Xu/dPVl5mxCAi8Eds/zEWvQyqLx0xC
+1e6KOelwPHKX+aekM6/C5lq/62rJJSRola5MY96GfUqjNqS5CNpzUyAbL4O7
+fszXoX8+wBJVQoiP6VMUTJnxjntXwGr76FD9BSGi7rTXGnBqcaJ1PfiT/6Dj
+w88pWZoNMCzT7VNTa8N4y7MX2Qef46GI1dzm8QJdj0pcwte1oe5QtvGekU4I
+ufxXXfMdkFt7ahcd6UbxVk0LITqhrijQMbZ6C7GGvWFxZRdcVHsfBhT3gDHm
+ZR1v8AbNSc6tDbb9sEoMbAqPfgezS1JF/uh72PjaasYt6oN0ur/v1RoRWFEM
+D6X7e9yWVD5n/PoB6efSR2quDIBhcmdscHAQ7FuCwhCpCBejyiNzLcUQjZm+
+cFkziCmqYPDg2U9glYpTta99RKyTsMygfgizxixPLbEY/cXCCx3mEnzLvhs8
+s2sIc4c6M21+kcLba+CPVOEw7Lw0FyIrR3C5rS506XIpfPLMDzwwHEXwaklV
+3uURnDAJsxgIGYP8t0Lq7fi/sB/ZuaR7qwx2tXJtPb8x6GvLtISzMhxndR5b
+HC4D/WmmYEXWONzyLUy+0hnHYefKN1/6TUDxWKmZ0TKOgu85uU+mJkAr+nQs
+OnUCcqmRjvj6Zzzkpb2+5PwZ5QE+i656T8Ku/ISOp+wzzm5OzikTTyJ4fzg7
+N2cS5r2+r28ly7E5xzHIbosc7q5JV5lOU/CL+vi+QWsKIaZtCrWXUwiU2tyc
+qJiC/DlPxE2YhigmQb/r7DT4dHbsDssZaKTdcWv2mIF+X3meunAGFpGbQv5S
+kv90QuD6owo42o46TXcpQMtnC0R6szDgWeUsFcwi5ncBT69uFpJ8J37FvTlU
+253X0o2eQ0kqr4bzWAld3xj7RIYStd+dOeXQMo+eVe0vT1YpsdYiXBphrML9
+G7AcZM8jl9884OpJo0IFLromC/NQzDhyQ1U0Kj75ZkLPvQUsz+cnZo6pUUVD
+JpmMLSr4nnJ2apGpU9t1GW6Nsyo03l9W6etEp9I11I17iOUZT8xiiYUK+byM
+2IC2Mjmb2EXUW280p8JRjssOGbFRaZF/NPGNt/7ya2vplChw64FlShX8x7lh
+A850KpZ/8fq+eRWCz6TUx7nSqaKL8SfjiI+NWFN5xOL42BAesWRnanUTcVBU
+iMUjYjfb8xWmbnTK092+ePGCCjms9Goh8Rc9Tc8eEGddufJJx51Oof3p3QZi
+3XPruO7EccLSC++IbQsyFPuIJYWZ2zVUKhSUZTEeEbeePtwbRGz/zT2v0A10
+SjMmrOYIsaPbtvYUYioy4FYicZqgJOw+ccm2DVGFxMmlVfGLPOiUdJPDllri
+bh+O3ipiS9cVDl3EnZv+vr2LmG1nqCclDrw76hpPnGG2RK4itj71qimf+D/r
+WG4M
+     "]]}},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Axes->True,
+  AxesOrigin->{0, 0},
+  PlotRange->{{0, 2}, {0., 2.5296207356000364`}},
+  PlotRangeClipping->True,
+  PlotRangePadding->{
+    Scaled[0.02], 
+    Scaled[0.02]}]], "Output",
+ ImageSize->{244, 154},
+ ImageMargins->{{0, 0}, {0, 0}},
+ ImageRegion->{{0, 1}, {0, 1}},
+ CellLabel->"Out[4]=",
+ CellID->400663140]
+}, Open  ]]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ InterpretationBox[Cell[TextData[{
+   "Properties & Relations",
+   "\[NonBreakingSpace]\[NonBreakingSpace]",
+   Cell["(1)", "ExampleCount"]
+  }], "ExampleSection"],
+  $Line = 0; Null]], "ExampleSection", "ExampleSection",
+ WholeCellGroupOpener->True,
+ CellID->7055],
+
+Cell[BoxData[
+ RowBox[{"Needs", "[", "\"\<NumericalAnalysis`\>\"", "]"}]], "Input", \
+"Deemphasis",
+ CellLabel->"In[1]:=",
+ CellID->171439789],
+
+Cell[TextData[{
+ Cell[BoxData[
+  ButtonBox["NumResidue",
+   BaseStyle->"Link",
+   ButtonData->"paclet:NumericalAnalysis/ref/NumResidue"]], "InlineFormula"],
+ " can also be used to construct a series of a numerical function:"
+}], "ExampleText",
+ CellID->12572],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"f", "[", 
+   RowBox[{"x_", "?", "NumericQ"}], "]"}], ":=", 
+  RowBox[{"Exp", "[", "x", "]"}]}]], "Input",
+ CellLabel->"In[2]:=",
+ CellID->12889],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"NumSeries", "[", 
+   RowBox[{
+    RowBox[{"f", "[", "x", "]"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"x", ",", "0", ",", "5"}], "}"}]}], "]"}], "//", 
+  "Chop"}]], "Input",
+ CellLabel->"In[3]:=",
+ CellID->2858],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"0.9999999999999998`", "+", "x", "+", 
+   RowBox[{"0.4999999999999999`", " ", 
+    SuperscriptBox["x", "2"]}], "+", 
+   RowBox[{"0.16666666666666669`", " ", 
+    SuperscriptBox["x", "3"]}], "+", 
+   RowBox[{"0.041666666666666685`", " ", 
+    SuperscriptBox["x", "4"]}], "+", 
+   RowBox[{"0.008333333333333403`", " ", 
+    SuperscriptBox["x", "5"]}], "+", 
+   InterpretationBox[
+    SuperscriptBox[
+     RowBox[{"O", "[", "x", "]"}], "6"],
+    SeriesData[$CellContext`x, 0, {}, 0, 6, 1],
+    Editable->False]}],
+  SeriesData[$CellContext`x, 0, {0.9999999999999998, 0.9999999999999997, 
+   0.4999999999999999, 0.16666666666666669`, 0.041666666666666685`, 
+   0.008333333333333403}, 0, 6, 1],
+  Editable->False]], "Output",
+ ImageSize->{411, 15},
+ ImageMargins->{{0, 0}, {0, 0}},
+ ImageRegion->{{0, 1}, {0, 1}},
+ CellLabel->"Out[3]=",
+ CellID->297211363]
+}, Open  ]],
+
+Cell[TextData[{
+ "Using ",
+ Cell[BoxData[
+  ButtonBox["NumResidue",
+   BaseStyle->"Link",
+   ButtonData->"paclet:NumericalAnalysis/ref/NumResidue"]], "InlineFormula"],
+ ":"
+}], "ExampleText",
+ CellID->129],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"NumResidue", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"f", "[", "x", "]"}], 
+      SuperscriptBox["x", 
+       RowBox[{"Range", "[", 
+        RowBox[{
+         RowBox[{"-", "1"}], ",", 
+         RowBox[{"-", "6"}], ",", 
+         RowBox[{"-", "1"}]}], "]"}]]}], ",", 
+     RowBox[{"{", 
+      RowBox[{"x", ",", "0"}], "}"}]}], "]"}], ".", 
+   SuperscriptBox["x", 
+    RowBox[{"Range", "[", 
+     RowBox[{"0", ",", "5"}], "]"}]]}], "//", "Chop"}]], "Input",
+ CellLabel->"In[4]:=",
+ CellID->8046],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"NIntegrate", "::", "\<\"ncvb\"\>"}], ":", 
+  " ", "\<\"NIntegrate failed to converge to prescribed accuracy after \
+\\!\\(9\\) recursive bisections in \\!\\(NumericalAnalysis`Private`t$4737\\) \
+near \\!\\({NumericalAnalysis`Private`t$4737}\\) = \
+\\!\\({4.0375350847224505`}\\). NIntegrate obtained \
+\\!\\(\\(\\(0.052353084087371826` \[InvisibleSpace]\\)\\) - \
+\\(\\(1.5832483768463135`*^-8\\\\ \[ImaginaryI]\\)\\)\\) and \
+\\!\\(5.345894822738664`*^-6\\) for the integral and error estimates. \
+\\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", \
+ButtonFrame->None, ButtonData:>\\\"paclet:ref/message/NIntegrate/ncvb\\\", \
+ButtonNote -> \\\"NIntegrate::ncvb\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellLabel->"During evaluation of In[4]:=",
+ CellID->176253333],
+
+Cell[BoxData[
+ RowBox[{"1.`", "\[InvisibleSpace]", "+", 
+  RowBox[{"1.0000000000000018`", " ", "x"}], "+", 
+  RowBox[{"0.49999999999669537`", " ", 
+   SuperscriptBox["x", "2"]}], "+", 
+  RowBox[{"0.16666666677806788`", " ", 
+   SuperscriptBox["x", "3"]}], "+", 
+  RowBox[{
+   RowBox[{"(", 
+    RowBox[{"0.041666633270600044`", "\[InvisibleSpace]", "+", 
+     RowBox[{"1.2602685249770972`*^-8", " ", "\[ImaginaryI]"}]}], ")"}], " ", 
+   SuperscriptBox["x", "4"]}], "+", 
+  RowBox[{
+   RowBox[{"(", 
+    RowBox[{"0.008332252118610875`", "\[InvisibleSpace]", "-", 
+     RowBox[{"2.519818053173107`*^-9", " ", "\[ImaginaryI]"}]}], ")"}], " ", 
+   SuperscriptBox["x", "5"]}]}]], "Output",
+ ImageSize->{428, 35},
+ ImageMargins->{{0, 0}, {0, 0}},
+ ImageRegion->{{0, 1}, {0, 1}},
+ CellLabel->"Out[4]=",
+ CellID->20171698]
+}, Open  ]]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ InterpretationBox[Cell[TextData[{
+   "Possible Issues",
+   "\[NonBreakingSpace]\[NonBreakingSpace]",
+   Cell["(2)", "ExampleCount"]
+  }], "ExampleSection"],
+  $Line = 0; Null]], "ExampleSection", "ExampleSection",
+ WholeCellGroupOpener->True,
+ CellID->5044],
+
+Cell[BoxData[
+ RowBox[{"Needs", "[", "\"\<NumericalAnalysis`\>\"", "]"}]], "Input", \
+"Deemphasis",
+ CellLabel->"In[1]:=",
+ CellID->587094157],
+
+Cell[TextData[{
+ Cell[BoxData["NumSeries"], "InlineFormula"],
+ " can have aliasing problems due to ",
+ Cell[BoxData[
+  ButtonBox["InverseFourier",
+   BaseStyle->"Link",
+   ButtonData->"paclet:ref/InverseFourier"]], "InlineFormula"],
+ ":"
+}], "ExampleText",
+ CellID->41],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"NumSeries", "[", 
+   RowBox[{
+    RowBox[{"ArcSin", "[", "x", "]"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"x", ",", "0", ",", "20"}], "}"}]}], "]"}], "//", 
+  "Chop"}]], "Input",
+ CellLabel->"In[2]:=",
+ CellID->25936],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{
+   FractionBox["0.0016365425943661556`", 
+    SuperscriptBox["x", "19"]], "+", 
+   FractionBox["0.0016125476359476522`", 
+    SuperscriptBox["x", "17"]], "+", 
+   FractionBox["0.001589466948964495`", 
+    SuperscriptBox["x", "15"]], "+", 
+   FractionBox["0.001567247856376418`", 
+    SuperscriptBox["x", "13"]], "+", 
+   FractionBox["0.0015458416369524045`", 
+    SuperscriptBox["x", "11"]], "+", 
+   FractionBox["0.001525203164002614`", 
+    SuperscriptBox["x", "9"]], "+", 
+   FractionBox["0.0015052905826523002`", 
+    SuperscriptBox["x", "7"]], "+", 
+   FractionBox["0.0014860650209797032`", 
+    SuperscriptBox["x", "5"]], "+", 
+   FractionBox["0.0014674903309734864`", 
+    SuperscriptBox["x", "3"]], "+", 
+   FractionBox["0.0014495328558061756`", "x"], "+", 
+   RowBox[{"1.0014321612203774`", " ", "x"}], "+", 
+   RowBox[{"0.16808201280914523`", " ", 
+    SuperscriptBox["x", "3"]}], "+", 
+   RowBox[{"0.07639906026226018`", " ", 
+    SuperscriptBox["x", "5"]}], "+", 
+   RowBox[{"0.046026135130843825`", " ", 
+    SuperscriptBox["x", "7"]}], "+", 
+   RowBox[{"0.03174991980074235`", " ", 
+    SuperscriptBox["x", "9"]}], "+", 
+   RowBox[{"0.02372528899633365`", " ", 
+    SuperscriptBox["x", "11"]}], "+", 
+   RowBox[{"0.01869148498306283`", " ", 
+    SuperscriptBox["x", "13"]}], "+", 
+   RowBox[{"0.015289571276162182`", " ", 
+    SuperscriptBox["x", "15"]}], "+", 
+   RowBox[{"0.01286293309231438`", " ", 
+    SuperscriptBox["x", "17"]}], "+", 
+   RowBox[{"0.011059526590323636`", " ", 
+    SuperscriptBox["x", "19"]}], "+", 
+   InterpretationBox[
+    SuperscriptBox[
+     RowBox[{"O", "[", "x", "]"}], "21"],
+    SeriesData[$CellContext`x, 0, {}, -19, 21, 1],
+    Editable->False]}],
+  SeriesData[$CellContext`x, 0, {
+   0.0016365425943661556`, 0, 0.0016125476359476522`, 0, 0.001589466948964495,
+     0, 0.001567247856376418, 0, 0.0015458416369524045`, 0, 
+    0.001525203164002614, 0, 0.0015052905826523002`, 0, 
+    0.0014860650209797032`, 0, 0.0014674903309734864`, 0, 
+    0.0014495328558061756`, 0, 1.0014321612203774`, 0, 0.16808201280914523`, 
+    0, 0.07639906026226018, 0, 0.046026135130843825`, 0, 0.03174991980074235, 
+    0, 0.02372528899633365, 0, 0.01869148498306283, 0, 0.015289571276162182`, 
+    0, 0.01286293309231438, 0, 0.011059526590323636`}, -19, 21, 1],
+  Editable->False]], "Output",
+ ImageSize->{510, 98},
+ ImageMargins->{{0, 0}, {0, 0}},
+ ImageRegion->{{0, 1}, {0, 1}},
+ CellLabel->"Out[2]=",
+ CellID->155738253]
+}, Open  ]],
+
+Cell["The correct expansion is analytic at the origin:", "ExampleText",
+ CellID->19154],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Series", "[", 
+  RowBox[{
+   RowBox[{"ArcSin", "[", 
+    RowBox[{"1.", "x"}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", "0", ",", "20"}], "}"}]}], "]"}]], "Input",
+ CellLabel->"In[3]:=",
+ CellID->333],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"x", "+", 
+   RowBox[{"0.16666666666666666`", " ", 
+    SuperscriptBox["x", "3"]}], "+", 
+   RowBox[{"0.075`", " ", 
+    SuperscriptBox["x", "5"]}], "+", 
+   RowBox[{"0.044642857142857144`", " ", 
+    SuperscriptBox["x", "7"]}], "+", 
+   RowBox[{"0.030381944444444444`", " ", 
+    SuperscriptBox["x", "9"]}], "+", 
+   RowBox[{"0.022372159090909092`", " ", 
+    SuperscriptBox["x", "11"]}], "+", 
+   RowBox[{"0.017352764423076924`", " ", 
+    SuperscriptBox["x", "13"]}], "+", 
+   RowBox[{"0.01396484375`", " ", 
+    SuperscriptBox["x", "15"]}], "+", 
+   RowBox[{"0.011551800896139705`", " ", 
+    SuperscriptBox["x", "17"]}], "+", 
+   RowBox[{"0.009761609529194078`", " ", 
+    SuperscriptBox["x", "19"]}], "+", 
+   InterpretationBox[
+    SuperscriptBox[
+     RowBox[{"O", "[", "x", "]"}], "21"],
+    SeriesData[FrontEndOwned`Cell1003`x, 0, {}, 1, 21, 1],
+    Editable->False]}],
+  SeriesData[
+  FrontEndOwned`Cell1003`x, 0, {
+   1., 0, 0.166666666666667, 0, 0.075, 0, 0.0446428571428571, 0, 
+    0.0303819444444444, 0, 0.0223721590909091, 0, 0.0173527644230769, 0, 
+    0.01396484375, 0, 0.0115518008961397, 0, 0.00976160952919408}, 1, 21, 1],
+  Editable->False]], "Output",
+ ImageSize->{451, 33},
+ ImageMargins->{{0, 0}, {0, 0}},
+ ImageRegion->{{0, 1}, {0, 1}},
+ CellLabel->"Out[3]=",
+ CellID->8756]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ InterpretationBox[Cell["\t", "ExampleDelimiter"],
+  $Line = 0; Null]], "ExampleDelimiter",
+ CellID->11051],
+
+Cell[BoxData[
+ RowBox[{"Needs", "[", "\"\<NumericalAnalysis`\>\"", "]"}]], "Input", \
+"Deemphasis",
+ CellLabel->"In[1]:=",
+ CellID->278664265],
+
+Cell[TextData[{
+ Cell[BoxData[
+  ButtonBox["SeriesData",
+   BaseStyle->"Link",
+   ButtonData->"paclet:ref/SeriesData"]], "InlineFormula"],
+ " cannot correctly represent a Laurent series. Here is the square of the \
+series of ",
+ Cell[BoxData[
+  RowBox[{
+   ButtonBox["Exp",
+    BaseStyle->"Link",
+    ButtonData->"paclet:ref/Exp"], "[", 
+   RowBox[{
+    FractionBox["1", 
+     StyleBox["x", "TI"]], "+", 
+    StyleBox["x", "TI"]}], "]"}]], "InlineFormula"],
+ ":"
+}], "ExampleText",
+ CellFrameLabels->{{None, None}, {None, None}},
+ CellID->25391],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  SuperscriptBox[
+   RowBox[{"NumSeries", "[", 
+    RowBox[{
+     RowBox[{"Exp", "[", 
+      RowBox[{
+       FractionBox["1", "x"], "+", "x"}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"x", ",", "0", ",", "5"}], "}"}]}], "]"}], "2"], "//", 
+  "Chop"}]], "Input",
+ CellLabel->"In[2]:=",
+ CellID->16534],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{
+   FractionBox["0.00009654397416102087`", 
+    SuperscriptBox["x", "10"]], "+", 
+   FractionBox["0.0009968853222729584`", 
+    SuperscriptBox["x", "9"]], "+", 
+   FractionBox["0.00675401704954646`", 
+    SuperscriptBox["x", "8"]], "+", 
+   FractionBox["0.03512276085384822`", 
+    SuperscriptBox["x", "7"]], "+", 
+   FractionBox["0.14641520464608326`", 
+    SuperscriptBox["x", "6"]], "+", 
+   FractionBox["0.49931214368840193`", 
+    SuperscriptBox["x", "5"]], "+", 
+   FractionBox["1.413972383200981`", 
+    SuperscriptBox["x", "4"]], "+", 
+   FractionBox["3.3365715913334455`", 
+    SuperscriptBox["x", "3"]], "+", 
+   FractionBox["6.422022521774702`", 
+    SuperscriptBox["x", "2"]], "+", 
+   FractionBox["9.759432976585416`", "x"], "+", "11.30191672854802`", "+", 
+   InterpretationBox[
+    SuperscriptBox[
+     RowBox[{"O", "[", "x", "]"}], "1"],
+    SeriesData[$CellContext`x, 0, {}, -10, 1, 1],
+    Editable->False]}],
+  SeriesData[$CellContext`x, 0, {0.00009654397416102087, 
+   0.0009968853222729584, 0.00675401704954646, 0.03512276085384822, 
+   0.14641520464608326`, 0.49931214368840193`, 1.413972383200981, 
+   3.3365715913334455`, 6.422022521774702, 9.759432976585416, 
+   11.30191672854802}, -10, 1, 1],
+  Editable->False]], "Output",
+ ImageSize->{446, 64},
+ ImageMargins->{{0, 0}, {0, 0}},
+ ImageRegion->{{0, 1}, {0, 1}},
+ CellLabel->"Out[2]=",
+ CellID->125565157]
+}, Open  ]],
+
+Cell[TextData[{
+ "Here is the ",
+ Cell[BoxData[
+  ButtonBox["SeriesData",
+   BaseStyle->"Link",
+   ButtonData->"paclet:ref/SeriesData"]], "InlineFormula"],
+ " representation of the Laurent series of ",
+ Cell[BoxData[
+  SuperscriptBox[
+   RowBox[{
+    ButtonBox["Exp",
+     BaseStyle->"Link",
+     ButtonData->"paclet:ref/Exp"], "[", 
+    RowBox[{
+     FractionBox["1", 
+      StyleBox["x", "TI"]], "+", 
+     StyleBox["x", "TI"]}], "]"}], "2"]], "InlineFormula"],
+ ":"
+}], "ExampleText",
+ CellID->22322],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"NumSeries", "[", 
+   RowBox[{
+    SuperscriptBox[
+     RowBox[{"Exp", "[", 
+      RowBox[{
+       FractionBox["1", "x"], "+", "x"}], "]"}], "2"], ",", 
+    RowBox[{"{", 
+     RowBox[{"x", ",", "0", ",", "5"}], "}"}]}], "]"}], "//", 
+  "Chop"}]], "Input",
+ CellLabel->"In[3]:=",
+ CellID->27079],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{
+   FractionBox["0.504724363113167`", 
+    SuperscriptBox["x", "5"]], "+", 
+   FractionBox["1.416275707653589`", 
+    SuperscriptBox["x", "4"]], "+", 
+   FractionBox["3.337275778420343`", 
+    SuperscriptBox["x", "3"]], "+", 
+   FractionBox["6.422189375284103`", 
+    SuperscriptBox["x", "2"]], "+", 
+   FractionBox["9.759465153704445`", "x"], "+", "11.301921952136327`", "+", 
+   RowBox[{"9.759465153704445`", " ", "x"}], "+", 
+   RowBox[{"6.422189375284103`", " ", 
+    SuperscriptBox["x", "2"]}], "+", 
+   RowBox[{"3.337275778420343`", " ", 
+    SuperscriptBox["x", "3"]}], "+", 
+   RowBox[{"1.416275707653589`", " ", 
+    SuperscriptBox["x", "4"]}], "+", 
+   RowBox[{"0.5047243631131669`", " ", 
+    SuperscriptBox["x", "5"]}], "+", 
+   InterpretationBox[
+    SuperscriptBox[
+     RowBox[{"O", "[", "x", "]"}], "6"],
+    SeriesData[$CellContext`x, 0, {}, -5, 6, 1],
+    Editable->False]}],
+  SeriesData[$CellContext`x, 0, {0.504724363113167, 1.416275707653589, 
+   3.337275778420343, 6.422189375284103, 9.759465153704445, 
+   11.301921952136327`, 9.759465153704445, 6.422189375284103, 
+   3.337275778420343, 1.416275707653589, 0.5047243631131669}, -5, 6, 1],
+  Editable->False]], "Output",
+ ImageSize->{437, 49},
+ ImageMargins->{{0, 0}, {0, 0}},
+ ImageRegion->{{0, 1}, {0, 1}},
+ CellLabel->"Out[3]=",
+ CellID->12244009]
+}, Open  ]]
+}, Open  ]]
+}, Closed]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[ButtonBox["SEE ALSO",
+ BaseStyle->None,
+ Appearance->{Automatic, None},
+ Evaluator->None,
+ Method->"Preemptive",
+ ButtonFunction:>(FrontEndExecute[{
+    FrontEnd`SelectionMove[
+     FrontEnd`SelectedNotebook[], All, ButtonCell], 
+    FrontEndToken["OpenCloseGroup"], 
+    FrontEnd`SelectionMove[
+     FrontEnd`SelectedNotebook[], After, 
+     CellContents]}]& )]], "SeeAlsoSection",
+ WholeCellGroupOpener->True,
+ CellID->23263],
+
+Cell[TextData[{
+ Cell[BoxData[
+  StyleBox[
+   ButtonBox["NumLimit",
+    BaseStyle->"Link",
+    ButtonData->"paclet:NumericalAnalysis/ref/NumLimit"],
+   FontFamily->"Verdana"]], "InlineFormula"],
+ "\[NonBreakingSpace]",
+ StyleBox["\[MediumSpace]\[FilledVerySmallSquare]\[MediumSpace]", 
+  "InlineSeparator"],
+ " ",
+ Cell[BoxData[
+  StyleBox[
+   ButtonBox["NumResidue",
+    BaseStyle->"Link",
+    ButtonData->"paclet:NumericalAnalysis/ref/NumResidue"],
+   FontFamily->"Verdana"]], "InlineFormula"],
+ "\[NonBreakingSpace]",
+ StyleBox["\[MediumSpace]\[FilledVerySmallSquare]\[MediumSpace]", 
+  "InlineSeparator"],
+ " ",
+ Cell[BoxData[
+  StyleBox[
+   ButtonBox["Series",
+    BaseStyle->"Link",
+    ButtonData->"paclet:ref/Series"],
+   FontFamily->"Verdana"]], "InlineFormula"],
+ "\[NonBreakingSpace]",
+ StyleBox["\[MediumSpace]\[FilledVerySmallSquare]\[MediumSpace]", 
+  "InlineSeparator"],
+ " ",
+ Cell[BoxData[
+  StyleBox[
+   ButtonBox["NSum",
+    BaseStyle->"Link",
+    ButtonData->"paclet:ref/NSum"],
+   FontFamily->"Verdana"]], "InlineFormula"]
+}], "SeeAlso",
+ CellID->17830]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[ButtonBox["TUTORIALS",
+ BaseStyle->None,
+ Appearance->{Automatic, None},
+ Evaluator->None,
+ Method->"Preemptive",
+ ButtonFunction:>(FrontEndExecute[{
+    FrontEnd`SelectionMove[
+     FrontEnd`SelectedNotebook[], All, ButtonCell], 
+    FrontEndToken["OpenCloseGroup"], 
+    FrontEnd`SelectionMove[
+     FrontEnd`SelectedNotebook[], After, 
+     CellContents]}]& )]], "TutorialsSection",
+ WholeCellGroupOpener->True,
+ CellID->28611],
+
+Cell[TextData[ButtonBox["Numerical Analysis Package",
+ BaseStyle->"Link",
+ ButtonData->
+  "paclet:NumericalAnalysis/tutorial/NumericalAnalysis"]], "Tutorials",
+ CellID->5712]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[ButtonBox["MORE ABOUT",
+ BaseStyle->None,
+ Appearance->{Automatic, None},
+ Evaluator->None,
+ Method->"Preemptive",
+ ButtonFunction:>(FrontEndExecute[{
+    FrontEnd`SelectionMove[
+     FrontEnd`SelectedNotebook[], All, ButtonCell], 
+    FrontEndToken["OpenCloseGroup"], 
+    FrontEnd`SelectionMove[
+     FrontEnd`SelectedNotebook[], After, 
+     CellContents]}]& )]], "MoreAboutSection",
+ WholeCellGroupOpener->True,
+ CellID->116062965],
+
+Cell[TextData[ButtonBox["Numerical Analysis Package",
+ BaseStyle->"Link",
+ ButtonData->
+  "paclet:NumericalAnalysis/guide/NumericalAnalysisPackage"]], "MoreAbout"]
+}, Open  ]],
+
+Cell[" ", "FooterCell"]
+},
+Saveable->False,
+ScreenStyleEnvironment->"Working",
+WindowSize->{725, 750},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+WindowTitle->"NumSeries - Wolfram Mathematica",
+TaggingRules->{
+ "ModificationHighlight" -> False, "ColorType" -> "SymbolColor", "LinkTrails" -> 
+  GridBox[{{
+      RowBox[{
+        StyleBox[
+         ButtonBox[
+         "Mathematica", ButtonData -> "paclet:guide/Mathematica", 
+          BaseStyle -> {"Link", "DockedLinkTrail"}], FontSlant -> "Italic"], 
+        Cell[">", "DockedLinkTrailSeparator"]}]}}, ColumnAlignments -> Left], 
+  "Metadata" -> {
+   "built" -> "{2014, 10, 4, 20, 24, 38.6563426}", 
+    "history" -> {"1", "", "", ""}, "context" -> "NumericalAnalysis`", 
+    "keywords" -> {}, "specialkeywords" -> {}, 
+    "tutorialcollectionlinks" -> {}, "index" -> True, "label" -> 
+    "Numerical Analysis Symbol", "language" -> "en", "paclet" -> 
+    "NumericalAnalysis", "status" -> "None", "summary" -> 
+    "NumSeries[f, {x, x_0, n}] gives a numerical approximation to the series \
+expansion of f about the point x = x_0 including the terms (x - x_0) -n \
+through (x - x_0) n.", "synonyms" -> {}, "title" -> "NumSeries", 
+    "titlemodifier" -> "", "windowtitle" -> "NumSeries", "type" -> "Symbol", 
+    "uri" -> "NumericalAnalysis/ref/NSeries"}, "SearchTextTranslated" -> ""},
+FrontEndVersion->"10.0 for Microsoft Windows (64-bit) (September 9, 2014)",
+StyleDefinitions->FrontEnd`FileName[{"Wolfram"}, "Reference.nb", 
+  CharacterEncoding -> "WindowsANSI"]
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{
+ "PrimaryExamplesSection"->{
+  Cell[9758, 321, 490, 14, 70, "PrimaryExamplesSection",
+   CellTags->"PrimaryExamplesSection",
+   CellID->236904427]}
+ }
+*)
+(*CellTagsIndex
+CellTagsIndex->{
+ {"PrimaryExamplesSection", 48466, 1534}
+ }
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[603, 21, 3310, 75, 70, "AnchorBarGrid",
+ CellID->1],
+Cell[3916, 98, 47, 1, 70, "ObjectName",
+ CellID->18563],
+Cell[CellGroupData[{
+Cell[3988, 103, 1523, 52, 70, "Usage",
+ CellID->9125],
+Cell[CellGroupData[{
+Cell[5536, 159, 608, 18, 70, "NotesSection",
+ CellGroupingRules->{"SectionGrouping", 50},
+ CellID->44765598],
+Cell[6147, 179, 231, 9, 70, "Notes",
+ CellID->7007],
+Cell[6381, 190, 155, 4, 70, "Notes",
+ CellID->18370],
+Cell[6539, 196, 473, 17, 70, "Notes",
+ CellID->15121],
+Cell[7015, 215, 208, 7, 70, "Notes",
+ CellID->7727],
+Cell[7226, 224, 345, 12, 70, "Notes",
+ CellID->2658],
+Cell[7574, 238, 255, 10, 70, "Notes",
+ CellID->24336],
+Cell[7832, 250, 368, 11, 70, "Notes",
+ CellID->18275],
+Cell[8203, 263, 127, 4, 70, "Notes",
+ CellID->1221],
+Cell[8333, 269, 332, 9, 70, "Notes",
+ CellID->11576],
+Cell[8668, 280, 400, 15, 70, "Notes",
+ CellID->1799],
+Cell[9071, 297, 69, 1, 70, "Notes",
+ CellID->24919],
+Cell[9143, 300, 566, 15, 70, "3ColumnTableMod",
+ CellID->14241]
+}, Closed]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[9758, 321, 490, 14, 70, "PrimaryExamplesSection",
+ CellTags->"PrimaryExamplesSection",
+ CellID->236904427],
+Cell[CellGroupData[{
+Cell[10273, 339, 194, 6, 70, "ExampleSection",
+ CellID->82172094],
+Cell[10470, 347, 142, 4, 70, "Input",
+ CellID->286133229],
+Cell[10615, 353, 200, 7, 70, "ExampleText",
+ CellID->31032],
+Cell[CellGroupData[{
+Cell[10840, 364, 214, 7, 70, "Input",
+ CellID->24988],
+Cell[11057, 373, 3130, 74, 164, "Output",
+ CellID->105763776]
+}, Open  ]],
+Cell[14202, 450, 256, 8, 70, "ExampleText",
+ CellID->23705],
+Cell[CellGroupData[{
+Cell[14483, 462, 92, 3, 70, "Input",
+ CellID->14670],
+Cell[14578, 467, 894, 24, 36, "Output",
+ CellID->98237564]
+}, Open  ]],
+Cell[15487, 494, 111, 3, 70, "ExampleText",
+ CellID->9868],
+Cell[CellGroupData[{
+Cell[15623, 501, 265, 8, 70, "Input",
+ CellID->28391],
+Cell[15891, 511, 1114, 26, 54, "Output",
+ CellID->229173192]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[17054, 543, 262, 8, 70, "ExampleSection",
+ CellID->5537],
+Cell[17319, 553, 141, 4, 70, "Input",
+ CellID->51004330],
+Cell[17463, 559, 76, 1, 70, "ExampleText",
+ CellID->26320],
+Cell[CellGroupData[{
+Cell[17564, 564, 248, 9, 70, "Input",
+ CellID->13124],
+Cell[17815, 575, 2314, 60, 71, "Output",
+ CellID->468945209]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[20166, 640, 120, 3, 70, "ExampleDelimiter",
+ CellID->9354],
+Cell[20289, 645, 142, 4, 70, "Input",
+ CellID->121312570],
+Cell[20434, 651, 93, 1, 70, "ExampleText",
+ CellID->28703],
+Cell[CellGroupData[{
+Cell[20552, 656, 301, 11, 70, "Input",
+ CellID->5494],
+Cell[20856, 669, 1417, 36, 73, "Output",
+ CellID->12386883]
+}, Open  ]],
+Cell[22288, 708, 233, 7, 70, "ExampleText",
+ CellID->23865],
+Cell[CellGroupData[{
+Cell[22546, 719, 263, 9, 70, "Input",
+ CellID->17554],
+Cell[22812, 730, 232, 8, 53, "Output",
+ CellID->210377578]
+}, Open  ]]
+}, Open  ]]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[23105, 745, 270, 8, 70, "ExampleSection",
+ CellID->15098],
+Cell[23378, 755, 142, 4, 70, "Input",
+ CellID->278312198],
+Cell[23523, 761, 82, 1, 70, "ExampleText",
+ CellID->9858],
+Cell[23608, 764, 424, 14, 70, "Input",
+ CellID->1730],
+Cell[24035, 780, 143, 6, 70, "ExampleText",
+ CellID->8553],
+Cell[CellGroupData[{
+Cell[24203, 790, 339, 12, 70, "Input",
+ CellID->29551],
+Cell[24545, 804, 523, 15, 36, "Output",
+ CellID->147176576]
+}, Open  ]],
+Cell[25083, 822, 43, 1, 70, "ExampleText",
+ CellID->444],
+Cell[CellGroupData[{
+Cell[25151, 827, 289, 10, 70, "Input",
+ CellID->21649],
+Cell[25443, 839, 3843, 73, 175, "Output",
+ CellID->400663140]
+}, Open  ]]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[29335, 918, 279, 8, 70, "ExampleSection",
+ CellID->7055],
+Cell[29617, 928, 142, 4, 70, "Input",
+ CellID->171439789],
+Cell[29762, 934, 259, 7, 70, "ExampleText",
+ CellID->12572],
+Cell[30024, 943, 179, 6, 70, "Input",
+ CellID->12889],
+Cell[CellGroupData[{
+Cell[30228, 953, 245, 9, 70, "Input",
+ CellID->2858],
+Cell[30476, 964, 895, 24, 36, "Output",
+ CellID->297211363]
+}, Open  ]],
+Cell[31386, 991, 205, 8, 70, "ExampleText",
+ CellID->129],
+Cell[CellGroupData[{
+Cell[31616, 1003, 547, 19, 70, "Input",
+ CellID->8046],
+Cell[32166, 1024, 818, 14, 70, "Message",
+ CellID->176253333],
+Cell[32987, 1040, 813, 21, 56, "Output",
+ CellID->20171698]
+}, Open  ]]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[33849, 1067, 272, 8, 70, "ExampleSection",
+ CellID->5044],
+Cell[34124, 1077, 142, 4, 70, "Input",
+ CellID->587094157],
+Cell[34269, 1083, 269, 9, 70, "ExampleText",
+ CellID->41],
+Cell[CellGroupData[{
+Cell[34563, 1096, 252, 9, 70, "Input",
+ CellID->25936],
+Cell[34818, 1107, 2496, 60, 119, "Output",
+ CellID->155738253]
+}, Open  ]],
+Cell[37329, 1170, 87, 1, 70, "ExampleText",
+ CellID->19154],
+Cell[CellGroupData[{
+Cell[37441, 1175, 234, 8, 70, "Input",
+ CellID->333],
+Cell[37678, 1185, 1345, 36, 54, "Output",
+ CellID->8756]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[39060, 1226, 121, 3, 70, "ExampleDelimiter",
+ CellID->11051],
+Cell[39184, 1231, 142, 4, 70, "Input",
+ CellID->278664265],
+Cell[39329, 1237, 545, 19, 70, "ExampleText",
+ CellID->25391],
+Cell[CellGroupData[{
+Cell[39899, 1260, 330, 12, 70, "Input",
+ CellID->16534],
+Cell[40232, 1274, 1425, 37, 85, "Output",
+ CellID->125565157]
+}, Open  ]],
+Cell[41672, 1314, 503, 19, 70, "ExampleText",
+ CellID->22322],
+Cell[CellGroupData[{
+Cell[42200, 1337, 328, 12, 70, "Input",
+ CellID->27079],
+Cell[42531, 1351, 1367, 35, 70, "Output",
+ CellID->12244009]
+}, Open  ]]
+}, Open  ]]
+}, Closed]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[43971, 1394, 441, 13, 70, "SeeAlsoSection",
+ CellID->23263],
+Cell[44415, 1409, 1074, 38, 70, "SeeAlso",
+ CellID->17830]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[45526, 1452, 444, 13, 70, "TutorialsSection",
+ CellID->28611],
+Cell[45973, 1467, 174, 4, 70, "Tutorials",
+ CellID->5712]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[46184, 1476, 449, 13, 70, "MoreAboutSection",
+ CellID->116062965],
+Cell[46636, 1491, 163, 3, 70, "MoreAbout"]
+}, Open  ]],
+Cell[46814, 1497, 23, 0, 70, "FooterCell"]
+}
+]
+*)
+
+(* End of internal cache information *)
+
