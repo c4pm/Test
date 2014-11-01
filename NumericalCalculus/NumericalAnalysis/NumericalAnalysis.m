@@ -1,7 +1,7 @@
 (* Mathematica Package *)
 
 (* Created by the Wolfram Workbench 18-Jul-2007 *)
-
+(* created by pieter van Bijnen *)
 (*
   This package is a modified copy of the NumericalCalculus package, 
   that is provided to help with documentation generation.
