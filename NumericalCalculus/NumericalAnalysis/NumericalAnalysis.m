@@ -1,5 +1,5 @@
 (* Mathematica Package *)
-
+(* hier is een c *)
 (* Created by the Wolfram Workbench 18-Jul-2007 *)
 (* created by pieter van Bijnen *)
 (*
